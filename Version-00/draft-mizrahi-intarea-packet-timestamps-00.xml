@@ -215,7 +215,7 @@
 	   
      <t>Synchronization aspects: <list
          hangIndent="10" style="empty">
-<!-- Really? No assumption about sync for this?  Is that a fact about the 32-bit format, or a choice we make here? ... -->
+<!-- Really? No assumption about sync for this?  Is that a fact about the both 64 and 32 bit formats? ... -->
          <t>There is no assumption about synchronization between nodes that use this timestamp format. Note that if the nodes that use this timestamp format use NTP-based synchronization, the timestamp may be derived from the NTP-synchronized clock, allowing the timestamp to be measured with respect to the clock of an NTP server.</t>
        </list></t>
 
