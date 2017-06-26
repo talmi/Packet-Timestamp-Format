@@ -156,9 +156,9 @@
 
 
    <section title="Recommended Timestamp Formats">
-	 <t>This memo recommends to use one of the two timestamp formats specified below. In cases where the two timestamp formats below do not satisfy the protocol requirements, the timestamp specification should clearly state the reasons for defining a new format.</t>
+	 <t>This memo recommends to use one of the three timestamp formats specified below. In cases where the three timestamp formats below do not satisfy the protocol requirements, the timestamp specification should clearly state the reasons for defining a new format.</t>
 	 
-	 <t>Clearly, different network protocols may have different requirements and constraints, and consequently may use different timestamp formats. The choice of the specific timestamp format for a given protocol may depend on a various factors. A few examples of factors that may affect the choice of the timestamp format:</t>
+	 <t>Clearly, different network protocols (and the use cases they serve) may have different requirements and constraints, and consequently may use different timestamp formats. The choice of the specific timestamp format for a given protocol may depend on a various factors. A few examples of factors that may affect the choice of the timestamp format:</t>
 
      <t><list style="symbols">
          <t>Timestamp size: while some network protocols may allow a large timestamp fields, in other cases there may be constraints with respect to the timestamp size, affecting the choice of the timestamp format.</t>
@@ -215,8 +215,8 @@
 	   
      <t>Synchronization aspects: <list
          hangIndent="10" style="empty">
-<!-- Really? No assumption about sync for this?  Is that a fact about the both 64 and 32 bit formats? ... -->
-         <t>There is no assumption about synchronization between nodes that use this timestamp format. Note that if the nodes that use this timestamp format use NTP-based synchronization, the timestamp may be derived from the NTP-synchronized clock, allowing the timestamp to be measured with respect to the clock of an NTP server.</t>
+<!-- Really? No assumption about sync for this?  resolved for me with the text changes below. -->
+         <t>The timestamp format itself does not place a requirement on the degree of synchronization between nodes; such requirements emerge from the protocol and use cases served. Note that if the nodes that use this timestamp format use NTP-based synchronization, the timestamp may be derived from the NTP-synchronized clock, allowing the timestamp to be measured with respect to the clock of an NTP server.</t>
        </list></t>
 
      </section>
@@ -263,7 +263,7 @@
 	   
      <t>Synchronization aspects: <list
          hangIndent="10" style="empty">
-         <t>There is no assumption about synchronization between nodes that use this timestamp format. Note that if the nodes that use this timestamp format use NTP-based synchronization, the timestamp may be derived from the NTP-synchronized clock, allowing the timestamp to be measured with respect to the clock of an NTP server.</t>
+         <t>The timestamp format itself does not place a requirement on the degree of synchronization between nodes; such requirements emerge from the protocol and use cases served. Note that if the nodes that use this timestamp format use NTP-based synchronization, the timestamp may be derived from the NTP-synchronized clock, allowing the timestamp to be measured with respect to the clock of an NTP server.</t>
        </list></t>
 
      </section>
