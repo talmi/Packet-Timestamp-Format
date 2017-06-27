@@ -5,10 +5,10 @@
 Network Working Group                                         T. Mizrahi
 Internet-Draft                                                   Marvell
 Intended status: Informational                                 J. Fabini
-Expires: December 17, 2017               Vienna University of Technology
+Expires: December 29, 2017               Vienna University of Technology
                                                                A. Morton
                                                                AT&T Labs
-                                                           June 15, 2017
+                                                           June 27, 2017
 
 
                Guidelines for Defining Packet Timestamps
@@ -16,15 +16,15 @@ Expires: December 17, 2017               Vienna University of Technology
 
 Abstract
 
-   This document specifies guidelines for defining packet timestamp
-   formats in network protocols.  It also presents two recommended
-   timestamp formats.  The target audience of this memo is network
-   protocol designers.  It is expected that a new network protocol that
-   requires a packet timestamp will, in most cases, use one of the
-   recommended timestamp formats.  If none of the recommended formats
-   fits the protocol requirements, the new protocol specification should
-   specify the format of the packet timestamp according to the
-   guidelines in this document.
+   This document specifies guidelines for defining binary packet
+   timestamp formats in networking protocols at various layers.  It also
+   presents three recommended timestamp formats.  The target audience of
+   this memo includes network protocol designers.  It is expected that a
+   new network protocol that requires a packet timestamp will, in most
+   cases, use one of the recommended timestamp formats.  If none of the
+   recommended formats fits the protocol requirements, the new protocol
+   specification should specify the format of the packet timestamp
+   according to the guidelines in this document.
 
 Status of This Memo
 
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 17, 2017.
+   This Internet-Draft will expire on December 29, 2017.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Mizrahi, et al.         Expires December 17, 2017               [Page 1]
+Mizrahi, et al.         Expires December 29, 2017               [Page 1]
 
 Internet-Draft              Packet Timestamps                  June 2017
 
@@ -74,16 +74,16 @@ Table of Contents
      2.2.  Abbreviations . . . . . . . . . . . . . . . . . . . . . .   3
    3.  Packet Timestamp Format Specification . . . . . . . . . . . .   3
    4.  Recommended Timestamp Formats . . . . . . . . . . . . . . . .   4
-     4.1.  The NTP Timestamp Format  . . . . . . . . . . . . . . . .   4
+     4.1.  NTP Timestamp Formats . . . . . . . . . . . . . . . . . .   4
        4.1.1.  NTP 64-bit Timestamp Format . . . . . . . . . . . . .   4
        4.1.2.  NTP 32-bit Timestamp Format . . . . . . . . . . . . .   6
      4.2.  The PTP Concatenated Timestamp Format . . . . . . . . . .   7
    5.  Packet Timestamp Control Field  . . . . . . . . . . . . . . .   8
-   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   9
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   9
-     8.2.  Informative References  . . . . . . . . . . . . . . . . .   9
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   9
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  10
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .  10
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  11
 
 1.  Introduction
@@ -97,19 +97,19 @@ Table of Contents
    [RFC3339] are represented as user-friendly strings, and are widely
    used in the RFC series, for example in information objects and data
    models, e.g., [RFC5646], [RFC6991], and [RFC7493].  Packet
-   timestamps, on the other hand, are represented by a compact field
-   that has a fixed size, and are not intended to have a human-friendly
-   format.  Packet timestamps are also very common in the RFC series,
-   and are used for example for measuring delay and for synchronizing
-   clocks, e.g., [RFC5905], [RFC4656], and [RFC1323].
+   timestamps, on the other hand, are represented by a compact binary
+   field that has a fixed size, and are not intended to have a human-
+   friendly format.  Packet timestamps are also very common in the RFC
+   series, and are used for example for measuring delay and for
+   synchronizing clocks, e.g., [RFC5905], [RFC4656], and [RFC1323].
 
    This memo presents guidelines for defining a packet timestamp format
-   in network protocols.  Two recommended timestamp formats are
+   in network protocols.  Three recommended timestamp formats are
    presented.  It is expected that a new network protocol that requires
 
 
 
-Mizrahi, et al.         Expires December 17, 2017               [Page 2]
+Mizrahi, et al.         Expires December 29, 2017               [Page 2]
 
 Internet-Draft              Packet Timestamps                  June 2017
 
@@ -165,7 +165,7 @@ Internet-Draft              Packet Timestamps                  June 2017
 
 
 
-Mizrahi, et al.         Expires December 17, 2017               [Page 3]
+Mizrahi, et al.         Expires December 29, 2017               [Page 3]
 
 Internet-Draft              Packet Timestamps                  June 2017
 
@@ -173,22 +173,24 @@ Internet-Draft              Packet Timestamps                  June 2017
    Synchronization aspects:
 
       Any assumptions or requirements related to synchronization should
-      be specified, for example, whether it is assumed that nodes should
-      be synchronized, and whether the timestamp is measured with
-      respect to a central reference clock such as an NTP server.
+      be specified, for example, whether it is assumed that nodes
+      populating the timestamps should be synchronized, and whether the
+      timestamp is measured with respect to a central reference clock
+      such as a stratum 1 NTP server.
 
 4.  Recommended Timestamp Formats
 
-   This memo recommends to use one of the two timestamp formats
-   specified below.  In cases where the two timestamp formats below do
+   This memo recommends to use one of the three timestamp formats
+   specified below.  In cases where the three timestamp formats below do
    not satisfy the protocol requirements, the timestamp specification
    should clearly state the reasons for defining a new format.
 
-   Clearly, different network protocols may have different requirements
-   and constraints, and consequently may use different timestamp
-   formats.  The choice of the specific timestamp format for a given
-   protocol may depend on a various factors.  A few examples of factors
-   that may affect the choice of the timestamp format:
+   Clearly, different network protocols (and the use cases they serve)
+   may have different requirements and constraints, and consequently may
+   use different timestamp formats.  The choice of the specific
+   timestamp format for a given protocol may depend on a various
+   factors.  A few examples of factors that may affect the choice of the
+   timestamp format:
 
    o  Timestamp size: while some network protocols may allow a large
       timestamp fields, in other cases there may be constraints with
@@ -205,7 +207,7 @@ Internet-Draft              Packet Timestamps                  June 2017
       in typical systems, using a common timestamp format should be
       preferred if possible.
 
-4.1.  The NTP Timestamp Format
+4.1.  NTP Timestamp Formats
 
 4.1.1.  NTP 64-bit Timestamp Format
 
@@ -216,14 +218,16 @@ Internet-Draft              Packet Timestamps                  June 2017
    preferred in network protocols that are typically deployed in concert
    with NTP.
 
-   The format is presented in this section according to the template
-   defined in Section 3.
 
 
 
-Mizrahi, et al.         Expires December 17, 2017               [Page 4]
+Mizrahi, et al.         Expires December 29, 2017               [Page 4]
 
 Internet-Draft              Packet Timestamps                  June 2017
+
+
+   The format is presented in this section according to the template
+   defined in Section 3.
 
 
         0                   1                   2                   3
@@ -264,27 +268,26 @@ Internet-Draft              Packet Timestamps                  June 2017
 
    Synchronization aspects:
 
-      There is no assumption about synchronization between nodes that
-      use this timestamp format.  Note that if the nodes that use this
-      timestamp format use NTP-based synchronization, the timestamp may
-      be derived from the NTP-synchronized clock, allowing the timestamp
-      to be measured with respect to the clock of an NTP server.
+      The timestamp format itself does not place a requirement on the
+      degree of synchronization between nodes; such requirements emerge
+      from the protocol and use cases served.  Note that if the nodes
+      that use this timestamp format use NTP-based synchronization, the
+      timestamp may be derived from the NTP-synchronized clock, allowing
 
 
 
 
-
-
-
-
-Mizrahi, et al.         Expires December 17, 2017               [Page 5]
+Mizrahi, et al.         Expires December 29, 2017               [Page 5]
 
 Internet-Draft              Packet Timestamps                  June 2017
 
 
+      the timestamp to be measured with respect to the clock of an NTP
+      server.
+
 4.1.2.  NTP 32-bit Timestamp Format
 
-   The Network Time Protocol (NTP) 64-bit timestamp format is defined in
+   The Network Time Protocol (NTP) 32-bit timestamp format is defined in
    [RFC5905].  This timestamp format is used in
    [I-D.morton-ippm-mbm-registry].  This timestamp format should be
    preferred in network protocols that are typically deployed in concert
@@ -327,24 +330,26 @@ Internet-Draft              Packet Timestamps                  June 2017
 
    Wraparound:
 
-      This time format wraps around every 2^16 seconds, which is roughly
-      18 hours.
 
 
 
-
-Mizrahi, et al.         Expires December 17, 2017               [Page 6]
+Mizrahi, et al.         Expires December 29, 2017               [Page 6]
 
 Internet-Draft              Packet Timestamps                  June 2017
 
 
+      This time format wraps around every 2^16 seconds, which is roughly
+      18 hours.
+
    Synchronization aspects:
 
-      There is no assumption about synchronization between nodes that
-      use this timestamp format.  Note that if the nodes that use this
-      timestamp format use NTP-based synchronization, the timestamp may
-      be derived from the NTP-synchronized clock, allowing the timestamp
-      to be measured with respect to the clock of an NTP server.
+      The timestamp format itself does not place a requirement on the
+      degree of synchronization between nodes; such requirements emerge
+      from the protocol and use cases served.  Note that if the nodes
+      that use this timestamp format use NTP-based synchronization, the
+      timestamp may be derived from the NTP-synchronized clock, allowing
+      the timestamp to be measured with respect to the clock of an NTP
+      server.
 
 4.2.  The PTP Concatenated Timestamp Format
 
@@ -381,18 +386,18 @@ Internet-Draft              Packet Timestamps                  June 2017
       Nanoseconds: specifies the fractional portion of the number of
       seconds since the epoch.
 
+
+
+
+Mizrahi, et al.         Expires December 29, 2017               [Page 7]
+
+Internet-Draft              Packet Timestamps                  June 2017
+
+
       + Size: 32 bits.
 
       + Units: nanoseconds.  The value of this field is in the range 0
       to (10^9)-1.
-
-
-
-
-Mizrahi, et al.         Expires December 17, 2017               [Page 7]
-
-Internet-Draft              Packet Timestamps                  June 2017
-
 
    Epoch:
 
@@ -406,8 +411,13 @@ Internet-Draft              Packet Timestamps                  June 2017
 
    Synchronization aspects:
 
-      There is no assumption about synchronization between nodes that
-      use this timestamp format.
+      The timestamp format itself does not place a requirement on the
+      degree of synchronization between nodes; such requirements emerge
+      from the protocol and use cases served.  Note that if the nodes
+      that use this timestamp format use PTP-based synchronization, the
+      timestamp may be derived from the PTP-synchronized clock, allowing
+      the timestamp to be measured with respect to the clock of an PTP
+      Grandmaster clock.
 
 5.  Packet Timestamp Control Field
 
@@ -428,6 +438,18 @@ Internet-Draft              Packet Timestamps                  June 2017
    o  Era - the number of times the time has wrapped around since the
       epoch.
 
+
+
+
+
+
+
+
+Mizrahi, et al.         Expires December 29, 2017               [Page 8]
+
+Internet-Draft              Packet Timestamps                  June 2017
+
+
 6.  IANA Considerations
 
    This memo includes no request to IANA.
@@ -442,14 +464,6 @@ Internet-Draft              Packet Timestamps                  June 2017
    Any metadata that is attached to control or data packets, and
    specifically packet timestamps, can facilitate network
    reconnaissance; by passively eavesdropping to timestamped packets an
-
-
-
-Mizrahi, et al.         Expires December 17, 2017               [Page 8]
-
-Internet-Draft              Packet Timestamps                  June 2017
-
-
    attacker can gather information about the network performance, and
    about the level of synchronization between nodes.
 
@@ -478,7 +492,19 @@ Internet-Draft              Packet Timestamps                  June 2017
    In many cases timestamping relies on an underlying synchronization
    mechanism.  Thus, any attack that compromises the synchronization
    mechanism can also compromise protocols that use timestamping.
-   Attacks on time protocols are discussed in detail in [RFC7456].
+   Attacks on time protocols are discussed in detail in [RFC7384].
+
+
+
+
+
+
+
+
+Mizrahi, et al.         Expires December 29, 2017               [Page 9]
+
+Internet-Draft              Packet Timestamps                  June 2017
+
 
 8.  References
 
@@ -495,16 +521,6 @@ Internet-Draft              Packet Timestamps                  June 2017
               Morton, A. and M. Mathis, "Initial Performance Metric
               Registry Entries Part 2: MBM", draft-morton-ippm-mbm-
               registry-01 (work in progress), March 2017.
-
-
-
-
-
-
-Mizrahi, et al.         Expires December 17, 2017               [Page 9]
-
-Internet-Draft              Packet Timestamps                  June 2017
-
 
    [IEEE1588]
               IEEE, "IEEE 1588 Standard for a Precision Clock
@@ -523,19 +539,10 @@ Internet-Draft              Packet Timestamps                  June 2017
               Timestamps", RFC 3339, DOI 10.17487/RFC3339, July 2002,
               <http://www.rfc-editor.org/info/rfc3339>.
 
-   [RFC3550]  Schulzrinne, H., Casner, S., Frederick, R., and V.
-              Jacobson, "RTP: A Transport Protocol for Real-Time
-              Applications", STD 64, RFC 3550, DOI 10.17487/RFC3550,
-              July 2003, <http://www.rfc-editor.org/info/rfc3550>.
-
    [RFC4656]  Shalunov, S., Teitelbaum, B., Karp, A., Boote, J., and M.
               Zekauskas, "A One-way Active Measurement Protocol
               (OWAMP)", RFC 4656, DOI 10.17487/RFC4656, September 2006,
               <http://www.rfc-editor.org/info/rfc4656>.
-
-   [RFC5277]  Chisholm, S. and H. Trevino, "NETCONF Event
-              Notifications", RFC 5277, DOI 10.17487/RFC5277, July 2008,
-              <http://www.rfc-editor.org/info/rfc5277>.
 
    [RFC5357]  Hedayat, K., Krzanowski, R., Morton, A., Yum, K., and J.
               Babiarz, "A Two-Way Active Measurement Protocol (TWAMP)",
@@ -546,21 +553,19 @@ Internet-Draft              Packet Timestamps                  June 2017
               Languages", BCP 47, RFC 5646, DOI 10.17487/RFC5646,
               September 2009, <http://www.rfc-editor.org/info/rfc5646>.
 
+
+
+
+
+Mizrahi, et al.         Expires December 29, 2017              [Page 10]
+
+Internet-Draft              Packet Timestamps                  June 2017
+
+
    [RFC5905]  Mills, D., Martin, J., Ed., Burbank, J., and W. Kasch,
               "Network Time Protocol Version 4: Protocol and Algorithms
               Specification", RFC 5905, DOI 10.17487/RFC5905, June 2010,
               <http://www.rfc-editor.org/info/rfc5905>.
-
-
-
-
-
-
-
-Mizrahi, et al.         Expires December 17, 2017              [Page 10]
-
-Internet-Draft              Packet Timestamps                  June 2017
-
 
    [RFC6374]  Frost, D. and S. Bryant, "Packet Loss and Delay
               Measurement for MPLS Networks", RFC 6374,
@@ -585,10 +590,6 @@ Internet-Draft              Packet Timestamps                  June 2017
               DOI 10.17487/RFC7493, March 2015,
               <http://www.rfc-editor.org/info/rfc7493>.
 
-   [RFC7940]  Davies, K. and A. Freytag, "Representing Label Generation
-              Rulesets Using XML", RFC 7940, DOI 10.17487/RFC7940,
-              August 2016, <http://www.rfc-editor.org/info/rfc7940>.
-
    [RFC8186]  Mirsky, G. and I. Meilik, "Support of the IEEE 1588
               Timestamp Format in a Two-Way Active Measurement Protocol
               (TWAMP)", RFC 8186, DOI 10.17487/RFC8186, June 2017,
@@ -612,8 +613,7 @@ Authors' Addresses
 
 
 
-
-Mizrahi, et al.         Expires December 17, 2017              [Page 11]
+Mizrahi, et al.         Expires December 29, 2017              [Page 11]
 
 Internet-Draft              Packet Timestamps                  June 2017
 
@@ -669,4 +669,4 @@ Internet-Draft              Packet Timestamps                  June 2017
 
 
 
-Mizrahi, et al.         Expires December 17, 2017              [Page 12]
+Mizrahi, et al.         Expires December 29, 2017              [Page 12]

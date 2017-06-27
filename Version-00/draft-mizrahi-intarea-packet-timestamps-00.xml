@@ -215,7 +215,6 @@
 	   
      <t>Synchronization aspects: <list
          hangIndent="10" style="empty">
-<!-- Really? No assumption about sync for this?  resolved for me with the text changes below. -->
          <t>The timestamp format itself does not place a requirement on the degree of synchronization between nodes; such requirements emerge from the protocol and use cases served. Note that if the nodes that use this timestamp format use NTP-based synchronization, the timestamp may be derived from the NTP-synchronized clock, allowing the timestamp to be measured with respect to the clock of an NTP server.</t>
        </list></t>
 
@@ -316,7 +315,7 @@
 
 	   <t>Synchronization aspects: <list
          hangIndent="10" style="empty">
-         <t>There is no assumption about synchronization between nodes that use this timestamp format.</t>
+         <t>The timestamp format itself does not place a requirement on the degree of synchronization between nodes; such requirements emerge from the protocol and use cases served. Note that if the nodes that use this timestamp format use PTP-based synchronization, the timestamp may be derived from the PTP-synchronized clock, allowing the timestamp to be measured with respect to the clock of an PTP Grandmaster clock.</t>
        </list></t>
 
 	 
@@ -363,7 +362,7 @@
 	 
 	 <t>Another potential threat that can have a similar impact is delay attacks. An attacker can maliciously delay some or all of the en route messages, with the same harmful implications as described in the previous paragraph. Mitigating delay attacks is a significant challenge; in contrast to spoofing and modification attacks, the delay attack cannot be prevented by cryptographic integrity protection mechanisms. In some cases delay attacks can be mitigated by sending the timestamped information through multiple paths, allowing to detect and to be resilient to an attacker that has access to one of the paths.</t>
 	 
-	 <t>In many cases timestamping relies on an underlying synchronization mechanism. Thus, any attack that compromises the synchronization mechanism can also compromise protocols that use timestamping. Attacks on time protocols are discussed in detail in <xref target="RFC7456"></xref>.</t>
+	 <t>In many cases timestamping relies on an underlying synchronization mechanism. Thus, any attack that compromises the synchronization mechanism can also compromise protocols that use timestamping. Attacks on time protocols are discussed in detail in <xref target="RFC7384"></xref>.</t>
 
    </section>
  
@@ -406,7 +405,7 @@
 
      <?rfc include='reference.RFC.3339'?>
      
-     <?rfc include='reference.RFC.5277'?>
+     <!-- ?rfc include='reference.RFC.5277'? -->
 
      <?rfc include='reference.RFC.7493'?>
 
@@ -414,13 +413,13 @@
 
      <?rfc include='reference.RFC.5646'?>
 
-     <?rfc include='reference.RFC.7940'?>
+     <!-- ?rfc include='reference.RFC.7940'? -->
 	 
      <?rfc include='reference.RFC.5905'?>
 
      <?rfc include='reference.RFC.1323'?>
 
-     <?rfc include='reference.RFC.3550'?>
+     <!-- ?rfc include='reference.RFC.3550'? -->
 
      <?rfc include='reference.RFC.6374'?>
 
@@ -441,9 +440,7 @@
 
    <!-- Change Log
 
-v00 2016-08-02  TM   Initial version
-
-v01 2016-08-10  TM   Minor updates including: timestamp format change, added Flow ID.
+v00 2017-06-15  TM   Initial version
 
    -->
  </back>
