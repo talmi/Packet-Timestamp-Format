@@ -177,7 +177,7 @@
 
 	   <t>A specification that uses one of the recommended timestamp formats should specify explicitly that this is a recommended timestamp format, and point to the relevant section in the current memo.</t>
 	 
-	   <t>A specification that uses one of the recommended timestamp formats should also include Synchronization Aspects section. Any assumptions or requirements related to synchronization should be specified in this section. For example, the synchronization aspects may specify whether nodes populating the timestamps should be synchronized among themselves, and whether the timestamp is measured with respect to a central reference clock such as an NTP server. If time is assumed to be synchronized to a time standard such as UTC or TAI, it should be specified in this section. Further considerations may be discussed in this section, such as required accuracy, or leap second handling.</t>
+	   <t>A specification that uses one of the recommended timestamp formats should also include a section on Synchronization Aspects. Any assumptions or requirements related to synchronization should be specified in this section. For example, the synchronization aspects may specify whether nodes populating the timestamps should be synchronized among themselves, and whether the timestamp is measured with respect to a central reference clock such as an NTP server. If time is assumed to be synchronized to a time standard such as UTC or TAI, it should be specified in this section. Further considerations may be discussed in this section, such as required accuracy, or leap second handling.</t>
 
 	 </section>
 	 
