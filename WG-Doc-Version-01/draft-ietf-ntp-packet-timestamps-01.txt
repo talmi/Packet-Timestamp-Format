@@ -5,10 +5,10 @@
 Network Working Group                                         T. Mizrahi
 Internet-Draft                                                   Marvell
 Intended status: Informational                                 J. Fabini
-Expires: July 5, 2018                    Vienna University of Technology
+Expires: August 20, 2018                 Vienna University of Technology
                                                                A. Morton
                                                                AT&T Labs
-                                                         January 1, 2018
+                                                              2 16, 2018
 
 
                Guidelines for Defining Packet Timestamps
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 5, 2018.
+   This Internet-Draft will expire on August 20, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Mizrahi, et al.           Expires July 5, 2018                  [Page 1]
+Mizrahi, et al.          Expires August 20, 2018                [Page 1]
 
-Internet-Draft              Packet Timestamps               January 2018
+Internet-Draft              Packet Timestamps                     2 2018
 
 
    (https://trustee.ietf.org/license-info) in effect on the date of
@@ -68,14 +68,14 @@ Internet-Draft              Packet Timestamps               January 2018
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  Requirements Language . . . . . . . . . . . . . . . . . .   3
      2.2.  Abbreviations . . . . . . . . . . . . . . . . . . . . . .   3
-     2.3.  Terms used in this Document . . . . . . . . . . . . . . .   3
+     2.3.  Terms used in this Document . . . . . . . . . . . . . . .   4
    3.  Packet Timestamp Format Specification . . . . . . . . . . . .   4
-   4.  Recommended Timestamp Formats . . . . . . . . . . . . . . . .   4
-     4.1.  Using a Recommended Timestamp Format  . . . . . . . . . .   5
+   4.  Recommended Timestamp Formats . . . . . . . . . . . . . . . .   5
+     4.1.  Using a Recommended Timestamp Format  . . . . . . . . . .   6
      4.2.  NTP Timestamp Formats . . . . . . . . . . . . . . . . . .   6
        4.2.1.  NTP 64-bit Timestamp Format . . . . . . . . . . . . .   6
        4.2.2.  NTP 32-bit Timestamp Format . . . . . . . . . . . . .   7
@@ -83,15 +83,36 @@ Table of Contents
    5.  Synchronization Aspects . . . . . . . . . . . . . . . . . . .   9
    6.  Timestamp Use Cases . . . . . . . . . . . . . . . . . . . . .  10
      6.1.  Example 1 . . . . . . . . . . . . . . . . . . . . . . . .  11
-     6.2.  Example 2 . . . . . . . . . . . . . . . . . . . . . . . .  11
-   7.  Packet Timestamp Control Field  . . . . . . . . . . . . . . .  11
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  12
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  12
-   10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  13
-   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
-     11.1.  Normative References . . . . . . . . . . . . . . . . . .  13
-     11.2.  Informative References . . . . . . . . . . . . . . . . .  13
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
+     6.2.  Example 2 . . . . . . . . . . . . . . . . . . . . . . . .  12
+   7.  Packet Timestamp Control Field  . . . . . . . . . . . . . . .  12
+     7.1.  High-level Control Field Requirements . . . . . . . . . .  12
+     7.2.  Control Field Categories  . . . . . . . . . . . . . . . .  13
+     7.3.  Control Field Features and Elements . . . . . . . . . . .  14
+       7.3.1.  Timestamp Format  . . . . . . . . . . . . . . . . . .  15
+       7.3.2.  Timestamp Format Specification  . . . . . . . . . . .  16
+       7.3.3.  Timestamp Precision . . . . . . . . . . . . . . . . .  16
+       7.3.4.  Timestamp Timescale . . . . . . . . . . . . . . . . .  17
+       7.3.5.  Timestamp Leap Second . . . . . . . . . . . . . . . .  17
+       7.3.6.  Reference Clock . . . . . . . . . . . . . . . . . . .  17
+       7.3.7.  Provable Signature  . . . . . . . . . . . . . . . . .  18
+       7.3.8.  Custom Extension  . . . . . . . . . . . . . . . . . .  18
+     7.4.  Control Field Payload Definition  . . . . . . . . . . . .  18
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  18
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  19
+   10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  19
+   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  20
+     11.1.  Normative References . . . . . . . . . . . . . . . . . .  20
+     11.2.  Informative References . . . . . . . . . . . . . . . . .  20
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  21
+
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018                [Page 2]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
 
 1.  Introduction
 
@@ -106,14 +127,6 @@ Table of Contents
    models, e.g., [RFC5646], [RFC6991], and [RFC7493].  Packet
    timestamps, on the other hand, are represented by a compact binary
    field that has a fixed size, and are not intended to have a human-
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                  [Page 2]
-
-Internet-Draft              Packet Timestamps               January 2018
-
-
    friendly format.  Packet timestamps are also very common in the RFC
    series, and are used for example for measuring delay and for
    synchronizing clocks, e.g., [RFC5905], [RFC4656], and [RFC1323].
@@ -145,6 +158,18 @@ Internet-Draft              Packet Timestamps               January 2018
 
    UTC         Coordinated Universal Time
 
+
+
+
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018                [Page 3]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
 2.3.  Terms used in this Document
 
    Timestamp error:       The difference between the timestamp value at
@@ -159,16 +184,6 @@ Internet-Draft              Packet Timestamps               January 2018
 
    Timestamp resolution:  The minimal time unit used for representing
                           the timestamp.
-
-
-
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                  [Page 3]
-
-Internet-Draft              Packet Timestamps               January 2018
-
 
 3.  Packet Timestamp Format Specification
 
@@ -203,6 +218,14 @@ Internet-Draft              Packet Timestamps               January 2018
 
    Resolution:
 
+
+
+
+Mizrahi, et al.          Expires August 20, 2018                [Page 4]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
       The timestamp resolution; the resolution is equal to the timestamp
       field unit.  If the timestamp consists of two or more fields using
       different time units, then the resolution is the smallest time
@@ -218,14 +241,6 @@ Internet-Draft              Packet Timestamps               January 2018
    This memo defines a set of recommended timestamp formats.  Defining a
    relatively small set of recommended formats enables significant
    reuse; for example, a network protocol may reuse the NTP or PTP
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                  [Page 4]
-
-Internet-Draft              Packet Timestamps               January 2018
-
-
    timestamp format, allowing a straightforward integration with an NTP
    or a PTP-based timer.  Moreover, since accurate timestamping
    mechanisms are often implemented in hardware, a new network protocol
@@ -259,6 +274,14 @@ Internet-Draft              Packet Timestamps               January 2018
 
    o  Common format for multiple protocols: if there are two or more
       network protocols that use timestamps and are often used together
+
+
+
+Mizrahi, et al.          Expires August 20, 2018                [Page 5]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
       in typical systems, using a common timestamp format should be
       preferred if possible.  Specifically, if the network protocol that
       is being defined typically runs on a PC, then an NTP-based
@@ -273,14 +296,6 @@ Internet-Draft              Packet Timestamps               January 2018
    A specification that uses one of the recommended timestamp formats
    should specify explicitly that this is a recommended timestamp
    format, and point to the relevant section in the current memo.
-
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                  [Page 5]
-
-Internet-Draft              Packet Timestamps               January 2018
-
 
 4.2.  NTP Timestamp Formats
 
@@ -316,6 +331,13 @@ Internet-Draft              Packet Timestamps               January 2018
 
       + Units: seconds.
 
+
+
+Mizrahi, et al.          Expires August 20, 2018                [Page 6]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
       Fraction: specifies the fractional portion of the number of
       seconds since the epoch.
 
@@ -329,14 +351,6 @@ Internet-Draft              Packet Timestamps               January 2018
       The epoch is 1 January 1900 at 00:00 UTC.
 
    Resolution:
-
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                  [Page 6]
-
-Internet-Draft              Packet Timestamps               January 2018
-
 
       The resolution is 2^(-32) seconds.
 
@@ -372,6 +386,14 @@ Internet-Draft              Packet Timestamps               January 2018
       Seconds: specifies the integer portion of the number of seconds
       since the epoch.
 
+
+
+
+Mizrahi, et al.          Expires August 20, 2018                [Page 7]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
       + Size: 16 bits.
 
       + Units: seconds.
@@ -385,14 +407,6 @@ Internet-Draft              Packet Timestamps               January 2018
       15.3 microseconds.
 
    Epoch:
-
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                  [Page 7]
-
-Internet-Draft              Packet Timestamps               January 2018
-
 
       The epoch is 1 January 1900 at 00:00 UTC.
 
@@ -428,6 +442,14 @@ Internet-Draft              Packet Timestamps               January 2018
 
             Figure 3: PTP [IEEE1588] Truncated Timestamp Format
 
+
+
+
+Mizrahi, et al.          Expires August 20, 2018                [Page 8]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
    Timestamp field format:
 
       Seconds: specifies the integer portion of the number of seconds
@@ -441,14 +463,6 @@ Internet-Draft              Packet Timestamps               January 2018
       seconds since the epoch.
 
       + Size: 32 bits.
-
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                  [Page 8]
-
-Internet-Draft              Packet Timestamps               January 2018
-
 
       + Units: nanoseconds.  The value of this field is in the range 0
       to (10^9)-1.
@@ -484,6 +498,14 @@ Internet-Draft              Packet Timestamps               January 2018
    specified in this section.  Further considerations may be discussed
    in this section, such as the required timestamp accuracy.
 
+
+
+
+Mizrahi, et al.          Expires August 20, 2018                [Page 9]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
    Another aspect that should be discussed in this section is leap
    second [RFC5905] considerations.  Generally speaking, in a
    timekeeping system that considers leap seconds, the system clock may
@@ -496,15 +518,6 @@ Internet-Draft              Packet Timestamps               January 2018
 
    o  The clock is slowed down during and slightly after the duration of
       the leap second, until the new time value catches up.
-
-
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                  [Page 9]
-
-Internet-Draft              Packet Timestamps               January 2018
-
 
    The way leap seconds are handled depends on the synchronization
    protocol, and is thus not specified in this document.  However, if a
@@ -519,6 +532,34 @@ Internet-Draft              Packet Timestamps               January 2018
    synchronization, and others.  The following table presents a (non-
    exhaustive) list of protocols that use packet timestamps, and the
    timestamp formats used in each of these protocols.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 10]
+
+Internet-Draft              Packet Timestamps                     2 2018
 
 
    +------------------+-----------------------------------+-----------+
@@ -552,16 +593,6 @@ Internet-Draft              Packet Timestamps               January 2018
    formats.  The examples include the text that specifies the
    information related to the timestamp format.
 
-
-
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                 [Page 10]
-
-Internet-Draft              Packet Timestamps               January 2018
-
-
 6.1.  Example 1
 
    Timestamp:
@@ -579,6 +610,14 @@ Internet-Draft              Packet Timestamps               January 2018
       the timestamp may be derived from the NTP-synchronized clock,
       allowing the timestamp to be measured with respect to the clock of
       an NTP server.  Since the NTP time format is affected by leap
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 11]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
       seconds, the current timestamp format is similarly affected.
       Thus, the value of a timestamp during or slightly after a leap
       second may be temporarily inaccurate.
@@ -609,32 +648,367 @@ Internet-Draft              Packet Timestamps               January 2018
    management plane, for example using a YANG data model.  The optional
    control field that is defined in this section allows some of the
    control information to be attached to the timestamp.  This section
-   defines a recommended format of a timestamp-related control field
+   defines requirements and a recommended format of a timestamp-related
+   control field that is intended for network protocols that can benefit
+   from such timestamp-related control information.
+
+7.1.  High-level Control Field Requirements
+
+   A control field for packet timestamps must offer an adequate feature
+   set and fulfill a series of requirements to be usable and accepted.
+   The following list captures the main high-level requirements for
+   timestamp fields.
+
+   1.  Extensible Feature Set: protocols and applications depend on
+       various timestamp characteristics.  A timestamp control field
+       must support a variable number of elements (components) that
+       either describe or quantify timestamp-specific characteristics or
+       parameters.  Examples of potential elements include timestamp
+       accuracy, leap seconds, reference clock identifiers, etc.
 
 
 
-Mizrahi, et al.           Expires July 5, 2018                 [Page 11]
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 12]
 
-Internet-Draft              Packet Timestamps               January 2018
+Internet-Draft              Packet Timestamps                     2 2018
 
 
-   that is intended for network protocols that require such timestamp-
-   related control information.
+   2.  Size: Essential for an efficient use of timestamp control fields
+       is the trade-off between supported features and control field
+       size.  Protocols and applications may select the specific control
+       field elements that are needed for their operation from the set
+       of available elements.
 
-   The recommended control field includes the following sub-fields:
+   3.  Composition: Applications may depend on specific control field
+       elements being present in messages.  The status of these elements
+       may be either mandatory, conditional mandatory, or optional,
+       depending on the specific application and context.  This memo
+       must support applications in conveying or negotiating (a) the set
+       of control field elements along with (b) the status of any
+       element (i.e., mandatory, conditional mandatory, or optional) by
+       defining appropriate data structures and identity codes.
 
-   o  Timestamp format.
+   4.  Category: Control field elements can characterize either static
+       timestamp information (like, e.g., timestamp size in bytes and
+       timestamp semantics: NTP 64 bit format) or runtime timestamp
+       information (like, e.g., estimated timestamp accuracy at the time
+       of sampling: 20 microseconds to UTC).  For efficiency reason it
+       is meaningful to support separation of these two concepts: while
+       the former (static) information is typically valid throughout a
+       protocol session and may be conveyed only once, at session
+       establishment time, the latter (runtime) information augments any
+       timestamp instance and may cause substantial overhead for high-
+       traffic protocols.
 
-   o  Precision.
+7.2.  Control Field Categories
 
-   o  Epoch.
+   Depending on their characteristics, the elements or components of a
+   timestamp control field can be assigned to one of two categories:
+   Structure (static) or Instance (runtime).  Aim of this categorization
+   is to support minimum overhead of timestamp control fields in
+   practice.  Protocols may use structural elements once, at connection
+   setup time to define or negotiate the timestamp structure and instace
+   elements (repeatedly) to identify the quality of timestamp instances
+   at runtime.
 
-   o  Era - the number of times the time has wrapped around since the
-      epoch.
+   1.  <Structure>: static timestamp control field.  The static control
+       field identifies information like timestamp structure, type,
+       size, or features, that characterize and are common to a set of
+       related timestamps.  Typical use of such a control field is at
+       connection establishment time when protocols negotiate available
+       and preferred timestamp types and features to be used for the
+       lifetime of an association.  For instance endpoints can specify
+       the type, structure and size of the timestamp representation
+       within protocol messages that will be exchanged as part of a
+       following protocol session.  These can be either standard
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 13]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
+       timestamp formats like NTP 64 bit as specified by this memo or
+       specific vendor-defined timestamp formats.
+
+   2.  <Instance>: runtime timestamp control field.  Besides static
+       information, dynamic (runtime) timestamp information is commonly
+       available at the sender when sampling a specific timestamp
+       instance.  Typical examples include the ID of a clock that
+       originated a specific timestamp, the estimated time
+       synchronization accuracy of the local reference clock when
+       sampling a specific timestamp, or the correction to apply due to
+       an ongoing leap smear for a leap second.  Moreover, with today's
+       critical infrastructures depending increasingly on accurate time,
+       provable signatures may become an essential runtime parameter to
+       protect the integrity of timestamp and control field values.  The
+       accurate and reliable operation of timestamp receivers can
+       benefit from this detailed runtime control field information that
+       augments any single timestamp.
+
+   Drawing analogies to programming languages, the static timestamp
+   control field maps best to concepts like "type", "structure", or
+   "template", whereas the runtime timestamp control field corresponds
+   to "variables", i.e., runtime-instantiations of types.  Main
+   consequence is that static timestamp control fields may be exchanged
+   only once during an ongoing association, saving substantial link
+   capacity, whereas a runtime timestamp control field accompanies any
+   single message or timestamp instance.  Still, some protocols may
+   prefer to augment any single timestamp instance with both, a static
+   and a runtime control field.  Example use cases for the latter
+   variant include potential support for heterogeneity in terms of
+   timestamps - various clients can decide dynamically which timestamp
+   format they send as part of the protocol - or to include a maximum of
+   timestamp context for receivers in the case of sporadic messages.
+
+7.3.  Control Field Features and Elements
+
+   The timestamp control field is composed of elements that can be
+   selected from the following set:
+
+   o  Timestamp format
+
+   o  Timestamp format specification
+
+   o  Precision
+
+   o  Timescale
+
+   o  Leap second
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 14]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
+   o  Reference clock(s)
+
+   o  Probable signature
+
+   o  Custom extension
+
+   o  ... (tbd)
+
+   The following subsections detail on the role of the elements, their
+   structure and related constraints.  Any element is characterized by
+   the following parameters:
+
+   o  ID: <IANA identifier for this element>
+
+   o  Type: Either <structure>: element defines static timestamp
+      structure that can subsequently be used to describe several
+      instances of timestamps - typically used once during connection
+      setup, or <instance>: parameter characteristic to a specific
+      timestamp instance.
+
+   o  Status: <mandatory>, <conditional mandatory>, or <optional>.
+      Note: interpretation of the status field depends on the value of
+      the type field.  If type is <structure>, then status <mandatory>
+      means that this element must be part of any <structure>-type
+      timestamp control field.  However, it may be part of <instance>-
+      type timestamp control field, too.
+
+   o  Size: <the size of this element, including all elements>
+
+   o  Value: the value or subfields of this element
+
+   o  Comments: Additions and considerations for this element
+
+7.3.1.  Timestamp Format
+
+   The timestamp format field defines the size and semantics of the
+   timestamp that follows this timestamp control field by referencing
+   appropriate IANA IDs.
+
+   o  ID: tbd
+
+   o  Type: <structure>
+
+   o  Status: <mandatory>
+
+   o  Size: tbd
+
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 15]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
+   o  Value: IANA identifier, referencing either a standard format
+      defined by this memo or an alternate timestamp format (e.g.
+      vendor-specific extension).  In the latter case, a Timestamp
+      Format Specification field is conditional mandatory.
+
+   o  Comments:
+
+7.3.2.  Timestamp Format Specification
+
+   The timestamp format specification field defines the structure and
+   size of custom timestamps and is needed whenever the use of standard
+   timestamp formats is inappropriate.
+
+   o  ID: tbd
+
+   o  Type: <structure>
+
+   o  Status: <conditional mandatory>.  This field must be included
+      whenever the "timestamp format" element references non-standard
+      timestamp formats and must not be included into the control field
+      otherwise.
+
+   o  Size: tbd
+
+   o  Value: Subfields: 1.  Timestamp size; 2.  User- or vendor-specific
+      id and 3.  Sub-id that allow to uniquely identify this timestamp
+      type;
+
+   o  Comments:
+
+7.3.3.  Timestamp Precision
+
+   The precision field value stores the precision of the clock that
+   originated the timestamp at the time when the timestamp was sampled
+   along with attributes that characterize the timestamp quality (like
+   absolute or relative synchronization, reference clock identifiers,
+   etc.)
+
+   o  ID: tbd
+
+   o  Type: <instance> (optionally: <structure> when the clock
+      originating the timestamps has maximum limits for precision)?
+
+   o  Status: <optional>.  The local system may or may not know the
+      precision (or accuracy) of its clock and sampled timestamps.
+
+   o  Size: tbd
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 16]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
+   o  Value: Subfields: 1.  Estimated Precision (in terms of 10^(-x)),
+      2.  Maximum Error, 3.  Reference (Absolute: UTC, TAI ...,
+      Relative: to specific clock, needs reference to clock ID)
+
+   o  Comments: NTF calls this "error".
+
+7.3.4.  Timestamp Timescale
+
+   The timescale field denotes Epoch and Era of the timestamp
+
+   o  ID: tbd
+
+   o  Type: <instance>
+
+   o  Status: <optional>
+
+   o  Size: tbd
+
+   o  Value: Subfields: 1. epoch 2. era
+
+   o  Comments:
+
+7.3.5.  Timestamp Leap Second
+
+   o  ID: tbd
+
+   o  Type: <instance>
+
+   o  Status: <optional>
+
+   o  Size: tbd
+
+   o  Value: Subfields: 1.  Leap second ongoing 2.  Considered leap
+      second fraction (during leap smear)
+
+   o  Comments:
+
+7.3.6.  Reference Clock
+
+   o  ID: tbd
+
+   o  Type: <instance> (perhaps <structure>, too)
+
+   o  Status: <optional>
+
+   o  Size: tbd
+
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 17]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
+   o  Value: Subfields: 1.  Reference clock type 2.  Unique reference
+      clock ID
+
+   o  Comments:
+
+7.3.7.  Provable Signature
+
+   o  ID: tbd
+
+   o  Type: <instance>
+
+   o  Status: <optional>
+
+   o  Size: tbd
+
+   o  Value: Signature covering the entire timstamp control field and
+      the timestamp field, masking out the provable signature field with
+      0.
+
+   o  Comments:
+
+7.3.8.  Custom Extension
+
+   o  ID: tbd
+
+   o  Type: <structure> or <instance>
+
+   o  Status: <optional>
+
+   o  Size: tbd
+
+   o  Value: tbd
+
+   o  Comments: For future extensions
+
+7.4.  Control Field Payload Definition
+
+   This section defines the binding format of timestamp control
+   (sub)fields to be used by protocols. (tbd)
 
 8.  IANA Considerations
 
    This memo includes no request to IANA.
+
+
+
+
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 18]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
 
 9.  Security Considerations
 
@@ -666,14 +1040,6 @@ Internet-Draft              Packet Timestamps               January 2018
    the previous paragraph.  Mitigating delay attacks is a significant
    challenge; in contrast to spoofing and modification attacks, the
    delay attack cannot be prevented by cryptographic integrity
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                 [Page 12]
-
-Internet-Draft              Packet Timestamps               January 2018
-
-
    protection mechanisms.  In some cases delay attacks can be mitigated
    by sending the timestamped information through multiple paths,
    allowing to detect and to be resilient to an attacker that has access
@@ -689,6 +1055,16 @@ Internet-Draft              Packet Timestamps               January 2018
    The authors thank Yaakov Stein, Greg Mirsky, Warner Losh, Rodney
    Cummings and other members of the NTP working group for many helpful
    comments.
+
+
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 19]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
 
 11.  References
 
@@ -720,16 +1096,6 @@ Internet-Draft              Packet Timestamps               January 2018
               ITU-T, "OAM functions and mechanisms for Ethernet based
               Networks", 2013.
 
-
-
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                 [Page 13]
-
-Internet-Draft              Packet Timestamps               January 2018
-
-
    [RFC1323]  Jacobson, V., Braden, R., and D. Borman, "TCP Extensions
               for High Performance", RFC 1323, DOI 10.17487/RFC1323, May
               1992, <https://www.rfc-editor.org/info/rfc1323>.
@@ -747,6 +1113,14 @@ Internet-Draft              Packet Timestamps               January 2018
               Zekauskas, "A One-way Active Measurement Protocol
               (OWAMP)", RFC 4656, DOI 10.17487/RFC4656, September 2006,
               <https://www.rfc-editor.org/info/rfc4656>.
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 20]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
 
    [RFC5357]  Hedayat, K., Krzanowski, R., Morton, A., Yum, K., and J.
               Babiarz, "A Two-Way Active Measurement Protocol (TWAMP)",
@@ -775,17 +1149,6 @@ Internet-Draft              Packet Timestamps               January 2018
               Packet Switched Networks", RFC 7384, DOI 10.17487/RFC7384,
               October 2014, <https://www.rfc-editor.org/info/rfc7384>.
 
-
-
-
-
-
-
-Mizrahi, et al.           Expires July 5, 2018                 [Page 14]
-
-Internet-Draft              Packet Timestamps               January 2018
-
-
    [RFC7456]  Mizrahi, T., Senevirathne, T., Salam, S., Kumar, D., and
               D. Eastlake 3rd, "Loss and Delay Measurement in
               Transparent Interconnection of Lots of Links (TRILL)",
@@ -803,6 +1166,18 @@ Internet-Draft              Packet Timestamps               January 2018
 
 Authors' Addresses
 
+
+
+
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 21]
+
+Internet-Draft              Packet Timestamps                     2 2018
+
+
    Tal Mizrahi
    Marvell
    6 Hamada st.
@@ -815,7 +1190,7 @@ Authors' Addresses
    Joachim Fabini
    Vienna University of Technology
    Gusshausstrasse 25/E389
-   Vienna  1040
+   Vienna 1040
    Austria
 
    Phone: +43 1 58801 38813
@@ -837,4 +1212,21 @@ Authors' Addresses
 
 
 
-Mizrahi, et al.           Expires July 5, 2018                 [Page 15]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mizrahi, et al.          Expires August 20, 2018               [Page 22]
