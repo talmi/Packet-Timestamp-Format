@@ -567,7 +567,7 @@
       </section>
     </section>
 
-    <section title="Packet Timestamp Control Field">
+    <section anchor="ControlSec" title="Packet Timestamp Control Field">
       <t>In some cases it is desirable to have a control field that includes
       information about the timestamp format. Control information about the
       timestamp format can be conveyed in some protocols using a dedicated
@@ -956,7 +956,8 @@
     <section anchor="Acknowledgments" title="Acknowledgments">
       <t>The authors thank Yaakov Stein, Greg Mirsky, Warner Losh, Rodney
       Cummings and other members of the NTP working group for many helpful
-      comments.</t>
+      comments. The authors gratefully acknowlege Harlan Stenn and the people 
+	  from the Network Time Foundation for sharing their thoughts and ideas.</t>
     </section>
   </middle>
 
