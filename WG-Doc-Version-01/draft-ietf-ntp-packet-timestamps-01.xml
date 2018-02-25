@@ -203,6 +203,13 @@
           <t>The origin of the timescale used for the timestamp; the moment in
           time used as a reference for the timestamp value.</t>
         </list></t>
+		
+      <t>Leap seconds: <list hangIndent="10" style="empty">
+          <t>This subsection specifies whether the timestamp is affected by
+		  leap seconds. If the timestamp is affected by leap seconds, then it
+		  represents the time elapsed since the epoch minus the number of leap
+		  seconds that have occurred since the epoch.</t>
+        </list></t>
 
       <t>Resolution: <list hangIndent="10" style="empty">
           <t>The timestamp resolution; the resolution is equal to the
@@ -318,6 +325,12 @@
               <t>The epoch is 1 January 1900 at 00:00 UTC.</t>
             </list></t>
 
+          <t>Leap seconds: <list hangIndent="10" style="empty">
+              <t>This timestamp format is affected by leap seconds. The 
+			  timestamp represents the number of seconds elapsed since the epoch
+			  minus the number of leap seconds.</t>
+            </list></t>
+			
           <t>Resolution: <list hangIndent="10" style="empty">
               <t>The resolution is 2^(-32) seconds.</t>
             </list></t>
@@ -375,7 +388,13 @@
               <t>The epoch is 1 January 1900 at 00:00 UTC.</t>
             </list></t>
 
-          <t>Resolution: <list hangIndent="10" style="empty">
+          <t>Leap seconds: <list hangIndent="10" style="empty">
+              <t>This timestamp format is affected by leap seconds. The 
+			  timestamp represents the number of seconds elapsed since the epoch
+			  minus the number of leap seconds.</t>
+            </list></t>
+
+		  <t>Resolution: <list hangIndent="10" style="empty">
               <t>The resolution is 2^(-16) seconds.</t>
             </list></t>
 
@@ -434,6 +453,10 @@
             00:00:00 TAI, which is 31 December 1969 23:59:51.999918 UTC.</t>
           </list></t>
 
+        <t>Leap seconds: <list hangIndent="10" style="empty">
+            <t>This timestamp format is not affected by leap seconds.</t>
+          </list></t>
+		  
         <t>Resolution: <list hangIndent="10" style="empty">
             <t>The resolution is 1 nanosecond.</t>
           </list></t>
