@@ -5,10 +5,10 @@
 Network Working Group                                         T. Mizrahi
 Internet-Draft                                                   Marvell
 Intended status: Informational                                 J. Fabini
-Expires: August 29, 2018                 Vienna University of Technology
+Expires: September 5, 2018               Vienna University of Technology
                                                                A. Morton
                                                                AT&T Labs
-                                                       February 25, 2018
+                                                           March 4, 2018
 
 
                Guidelines for Defining Packet Timestamps
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 29, 2018.
+   This Internet-Draft will expire on September 5, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Mizrahi, et al.          Expires August 29, 2018                [Page 1]
+Mizrahi, et al.         Expires September 5, 2018               [Page 1]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    (https://trustee.ietf.org/license-info) in effect on the date of
@@ -73,7 +73,7 @@ Table of Contents
      2.1.  Requirements Language . . . . . . . . . . . . . . . . . .   3
      2.2.  Abbreviations . . . . . . . . . . . . . . . . . . . . . .   3
      2.3.  Terms used in this Document . . . . . . . . . . . . . . .   4
-   3.  Packet Timestamp Format Specification . . . . . . . . . . . .   4
+   3.  Packet Timestamp Specification Template . . . . . . . . . . .   4
    4.  Recommended Timestamp Formats . . . . . . . . . . . . . . . .   5
      4.1.  Using a Recommended Timestamp Format  . . . . . . . . . .   6
      4.2.  NTP Timestamp Formats . . . . . . . . . . . . . . . . . .   6
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Mizrahi, et al.          Expires August 29, 2018                [Page 2]
+Mizrahi, et al.         Expires September 5, 2018               [Page 2]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018                [Page 3]
+Mizrahi, et al.         Expires September 5, 2018               [Page 3]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
 2.3.  Terms used in this Document
@@ -185,7 +185,7 @@ Internet-Draft              Packet Timestamps              February 2018
    Timestamp resolution:  The minimal time unit used for representing
                           the timestamp.
 
-3.  Packet Timestamp Format Specification
+3.  Packet Timestamp Specification Template
 
    This memo recommends to use the timestamp formats defined in
    Section 4.  In cases where these timestamp formats do not satisfy the
@@ -195,13 +195,12 @@ Internet-Draft              Packet Timestamps              February 2018
    timestamp format, either a timestamp format from this memo, or any
    other previously defined timestamp format.
 
-   This section defines a template for specifying packet timestamp
-   formats.  A timestamp format specification MUST include the following
-   aspects:
+   This section defines a template for specifying packet timestamps.  A
+   timestamp format specification MUST include the following aspects:
 
-   Timestamp field format:
+   Timestamp field structure:
 
-      The format of the timestamp field consists of:
+      The structure of the timestamp field consists of:
 
       + Size: The number of bits (or octets) used to represent the
       packet timestamp field.
@@ -221,9 +220,10 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018                [Page 4]
+
+Mizrahi, et al.         Expires September 5, 2018               [Page 4]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
       This subsection specifies whether the timestamp is affected by
@@ -277,9 +277,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018                [Page 5]
+Mizrahi, et al.         Expires September 5, 2018               [Page 5]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    o  Wraparound period: the length of the time interval in which the
@@ -333,9 +333,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018                [Page 6]
+Mizrahi, et al.         Expires September 5, 2018               [Page 6]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    Timestamp field format:
@@ -389,9 +389,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018                [Page 7]
+Mizrahi, et al.         Expires September 5, 2018               [Page 7]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
         0                   1                   2                   3
@@ -445,9 +445,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018                [Page 8]
+Mizrahi, et al.         Expires September 5, 2018               [Page 8]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
 4.3.  The PTP Truncated Timestamp Format
@@ -501,9 +501,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018                [Page 9]
+Mizrahi, et al.         Expires September 5, 2018               [Page 9]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    Resolution:
@@ -557,9 +557,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 10]
+Mizrahi, et al.         Expires September 5, 2018              [Page 10]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
 6.  Timestamp Use Cases
@@ -613,9 +613,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 11]
+Mizrahi, et al.         Expires September 5, 2018              [Page 11]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    Synchronization aspects:
@@ -669,9 +669,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 12]
+Mizrahi, et al.         Expires September 5, 2018              [Page 12]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    The following list captures the main high-level requirements for
@@ -725,9 +725,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 13]
+Mizrahi, et al.         Expires September 5, 2018              [Page 13]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    1.  <Structure>: static timestamp control field.  The static control
@@ -781,9 +781,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 14]
+Mizrahi, et al.         Expires September 5, 2018              [Page 14]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    o  Timestamp format
@@ -837,9 +837,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 15]
+Mizrahi, et al.         Expires September 5, 2018              [Page 15]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    o  ID: tbd
@@ -893,9 +893,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 16]
+Mizrahi, et al.         Expires September 5, 2018              [Page 16]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    o  Type: <instance> (optionally: <structure> when the clock
@@ -949,9 +949,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 17]
+Mizrahi, et al.         Expires September 5, 2018              [Page 17]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
 7.3.6.  Reference Clock
@@ -1005,9 +1005,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 18]
+Mizrahi, et al.         Expires September 5, 2018              [Page 18]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
 7.4.  Control Field Payload Definition
@@ -1061,9 +1061,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 19]
+Mizrahi, et al.         Expires September 5, 2018              [Page 19]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
 10.  Acknowledgments
@@ -1117,9 +1117,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 20]
+Mizrahi, et al.         Expires September 5, 2018              [Page 20]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    [RFC3550]  Schulzrinne, H., Casner, S., Frederick, R., and V.
@@ -1173,9 +1173,9 @@ Internet-Draft              Packet Timestamps              February 2018
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 21]
+Mizrahi, et al.         Expires September 5, 2018              [Page 21]
 
-Internet-Draft              Packet Timestamps              February 2018
+Internet-Draft              Packet Timestamps                 March 2018
 
 
    [RFC8186]  Mirsky, G. and I. Meilik, "Support of the IEEE 1588
@@ -1229,4 +1229,4 @@ Authors' Addresses
 
 
 
-Mizrahi, et al.          Expires August 29, 2018               [Page 22]
+Mizrahi, et al.         Expires September 5, 2018              [Page 22]

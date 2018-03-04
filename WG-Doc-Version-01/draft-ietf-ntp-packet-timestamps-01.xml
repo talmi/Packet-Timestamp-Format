@@ -174,7 +174,7 @@
       </section>
     </section>
 
-    <section anchor="format" title="Packet Timestamp Format Specification">
+    <section anchor="format" title="Packet Timestamp Specification Template">
       <t>This memo recommends to use the timestamp formats defined in <xref
       target="Recommended"/>. In cases where these timestamp formats do not
       satisfy the protocol requirements, the timestamp specification should
@@ -183,12 +183,12 @@
       timestamp format, either a timestamp format from this memo, or any other
       previously defined timestamp format.</t>
 
-      <t>This section defines a template for specifying packet timestamp
-      formats. A timestamp format specification MUST include the following
+      <t>This section defines a template for specifying packet timestamps. 
+	  A timestamp format specification MUST include the following
       aspects:</t>
 
-      <t>Timestamp field format: <list hangIndent="10" style="empty">
-          <t>The format of the timestamp field consists of:</t>
+      <t>Timestamp field structure: <list hangIndent="10" style="empty">
+          <t>The structure of the timestamp field consists of:</t>
 
           <t>+ Size: The number of bits (or octets) used to represent the
           packet timestamp field.</t>
