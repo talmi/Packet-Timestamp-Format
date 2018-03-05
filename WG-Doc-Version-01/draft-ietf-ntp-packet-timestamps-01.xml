@@ -158,9 +158,14 @@
 
       <section title="Terms used in this Document">
         <t><list hangIndent="23" style="hanging">
-            <t hangText="Timestamp error:">The difference between the
+
+  		    <t hangText="Timestamp error:">The difference between the
             timestamp value at the device under test and the value of a
             reference clock at the same time instant.</t>
+
+  		    <t hangText="Timestamp format:">The specification of a timestamp, 
+			which is represented by a set of attributes that unambiguously 
+			define the syntax and semantics of a timestamp.</t>
 
             <t hangText="Timestamp accuracy:">The mean over an ensemble of
             measurements of the timestamp error.</t>
@@ -183,46 +188,54 @@
       timestamp format, either a timestamp format from this memo, or any other
       previously defined timestamp format.</t>
 
+	  <t>The timestamp specification must unambiguously define the syntax and 
+	  the semantics of the timestamp. The current section defines the
+	  minimum set of attributes, but it should be noted that in some cases 
+	  additional attributes or aspects will need to defined in the timestamp 
+	  specification.</t> 
+	  
       <t>This section defines a template for specifying packet timestamps. 
-	  A timestamp format specification MUST include the following
+	  A timestamp format specification MUST include at least the following
       aspects:</t>
 
-      <t>Timestamp field structure: <list hangIndent="10" style="empty">
+      <t>Timestamp syntax: <list hangIndent="10" style="empty">
           <t>The structure of the timestamp field consists of:</t>
 
           <t>+ Size: The number of bits (or octets) used to represent the
-          packet timestamp field.</t>
+          packet timestamp field. If the timestamp is comprised of more than one 
+		  field, the size of each field is specified.</t>
 
-          <t>+ Units: The units used to represent the timestamp.</t>
-
-          <t>If the timestamp is comprised of more than one field, the format
-          of each field is specified.</t>
         </list></t>
 
-      <t>Epoch: <list hangIndent="10" style="empty">
-          <t>The origin of the timescale used for the timestamp; the moment in
-          time used as a reference for the timestamp value.</t>
-        </list></t>
+	  <t>Timestamp semantics: <list hangIndent="10" style="empty">
 		
-      <t>Leap seconds: <list hangIndent="10" style="empty">
-          <t>This subsection specifies whether the timestamp is affected by
-		  leap seconds. If the timestamp is affected by leap seconds, then it
-		  represents the time elapsed since the epoch minus the number of leap
-		  seconds that have occurred since the epoch.</t>
-        </list></t>
+          <t>+ Units: The units used to represent the timestamp. If the 
+		  timestamp is comprised of more than one field, the units of each 
+		  field are specified.</t>
 
-      <t>Resolution: <list hangIndent="10" style="empty">
-          <t>The timestamp resolution; the resolution is equal to the
-          timestamp field unit. If the timestamp consists of two or more
+          <t>+ Resolution: The timestamp resolution; the resolution is equal to 
+		  the timestamp field unit. If the timestamp consists of two or more
           fields using different time units, then the resolution is the
           smallest time unit.</t>
-        </list></t>
 
-      <t>Wraparound: <list hangIndent="10" style="empty">
-          <t>The wraparound period of the timestamp; any further
+          <t>+ Wraparound: The wraparound period of the timestamp; any further
           wraparound-related considerations should be described here.</t>
+
+		  <t>+ Epoch: The origin of the timescale used for the timestamp; 
+		  the moment in time used as a reference for the timestamp value.
+		  For example, the epoch may be based on a standard time scale, such as 
+		  UTC. Another example is a relative timestamp, in which the epoch is 
+		  the time at which the device using the timestamp was powered up, and
+		  is not affected by leap seconds (see the next attribute).</t>
+		
+          <t>+ Leap seconds: This subsection specifies whether the timestamp is 
+		  affected by leap seconds. If the timestamp is affected by leap 
+		  seconds, then it represents the time elapsed since the epoch minus 
+		  the number of leap seconds that have occurred since the epoch.</t>
+
         </list></t>
-    </section>
+		
+	</section>
 
     <section anchor="Recommended" title="Recommended Timestamp Formats">
       <t>This memo defines a set of recommended timestamp formats. Defining a
@@ -486,9 +499,13 @@
       timestamp accuracy.</t>
 
       <t>Another aspect that should be discussed in this section is leap
-      second <xref target="RFC5905"/> considerations. Generally speaking, in a
-      timekeeping system that considers leap seconds, the system clock may be
-      affected by a leap second in one of three possible ways:</t>
+      second <xref target="RFC5905"/> considerations. The timestamp 
+	  specification template (<xref target="format"/>) specifies whether the 
+	  timestamp is affected by leap seconds. It is often the case that further 
+	  details about leap seconds will need to be defined in the Synchronization 
+	  Aspects section. Generally speaking, in a timekeeping system that 
+	  considers leap seconds, the system clock may be affected by a leap second 
+	  in one of three possible ways:</t>
 
       <t><list style="symbols">
           <t>The clock is turned backwards one second at the end of the leap
