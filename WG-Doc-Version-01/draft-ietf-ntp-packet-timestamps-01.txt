@@ -203,7 +203,7 @@ Internet-Draft              Packet Timestamps                 March 2018
    The timestamp specification must unambiguously define the syntax and
    the semantics of the timestamp.  The current section defines the
    minimum set of attributes, but it should be noted that in some cases
-   additional attributes or aspects will need to defined in the
+   additional attributes or aspects will need to be defined in the
    timestamp specification.
 
    This section defines a template for specifying packet timestamps.  A

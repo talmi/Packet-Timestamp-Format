@@ -191,7 +191,7 @@
 	  <t>The timestamp specification must unambiguously define the syntax and 
 	  the semantics of the timestamp. The current section defines the
 	  minimum set of attributes, but it should be noted that in some cases 
-	  additional attributes or aspects will need to defined in the timestamp 
+	  additional attributes or aspects will need to be defined in the timestamp 
 	  specification.</t> 
 	  
       <t>This section defines a template for specifying packet timestamps. 
