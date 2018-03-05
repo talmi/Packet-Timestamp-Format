@@ -607,6 +607,10 @@
         feature set and fulfill a series of requirements to be usable and
         accepted. The following list captures the main high-level requirements
         for timestamp fields.</t>
+	
+        <t>Note: We are offering requirements in an Informational Doc.
+        Suggest to indicate the informal meaning of terms (conditionally mandatory).</t>
+
 
         <t><list style="numbers">
             <t>Extensible Feature Set: protocols and applications depend on
