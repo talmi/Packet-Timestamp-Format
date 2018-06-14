@@ -604,13 +604,13 @@
     </section>
 
     <section anchor="ControlSec" title="Packet Timestamp Control Field">
-      <t>In some cases it is desirable to have a control field that includes
-      information about the timestamp format. Control information about the
-      timestamp format can be conveyed in some protocols using a dedicated
-      control plane protocol, or may be made available at the management
-      plane, for example using a YANG data model. An optional control field
-      allows some of the control information to be attached to the
-      timestamp.</t>
+      <t>In some cases it is desirable to have a control field that describes
+      structure, format, content, and properties of timestamps. Control
+      information about the timestamp format can be conveyed in some protocols
+      using a dedicated control plane protocol, or may be made available at
+      the management plane, for example using a YANG data model. An optional
+      control field allows some of the control information to be attached to
+      the timestamp.</t>
 
       <t>An example of a packet timestamp control field is the Error Estimate
       field, defined by Section 4.1.2 in <xref target="RFC4656"/>, which is
@@ -633,8 +633,9 @@
             various timestamp characteristics. A timestamp control field must
             support a variable number of elements (components) that either
             describe or quantify timestamp-specific characteristics or
-            parameters. Examples of potential elements include timestamp
-            accuracy, leap seconds, reference clock identifiers, etc.</t>
+            parameters. Examples of potential elements include timestamp size,
+            encoding, accuracy, leap seconds, reference clock identifiers,
+            etc.</t>
 
             <t>Size: Essential for an efficient use of timestamp control
             fields is the trade-off between supported features and control
@@ -645,78 +646,26 @@
             <t>Composition: Applications may depend on specific control field
             elements being present in messages. The status of these elements
             may be either mandatory, conditional mandatory, or optional,
-            depending on the specific application and context. This memo must
-            support applications in conveying or negotiating (a) the set of
-            control field elements along with (b) the status of any element
-            (i.e., mandatory, conditional mandatory, or optional) by defining
-            appropriate data structures and identity codes.</t>
+            depending on the specific application and context. A control field
+            specification must support applications in conveying or
+            negotiating (a) the set of control field elements along with (b)
+            the status of any element (i.e., mandatory, conditional mandatory,
+            or optional) by defining appropriate data structures and identity
+            codes.</t>
 
             <t>Category: Control field elements can characterize either static
             timestamp information (like, e.g., timestamp size in bytes and
             timestamp semantics: NTP 64 bit format) or runtime timestamp
             information (like, e.g., estimated timestamp accuracy at the time
-            of sampling: 20 microseconds to UTC). For efficiency reason it is
-            meaningful to support separation of these two concepts: while the
-            former (static) information is typically valid throughout a
+            of sampling: 20 microseconds to UTC). For efficiency reason it may
+            be meaningful to support separation of these two concepts: while
+            the former (static) information is typically valid throughout a
             protocol session and may be conveyed only once, at session
             establishment time, the latter (runtime) information augments any
             timestamp instance and may cause substantial overhead for
             high-traffic protocols.</t>
-          </list></t>
-      </section>
-
-      <section title="Control Field Categories">
-        <t>Depending on their characteristics, the elements or components of a
-        timestamp control field can be assigned to one of two categories:
-        Structure (static) or Instance (runtime). Aim of this categorization
-        is to support minimum overhead of timestamp control fields in
-        practice. Protocols may use structural elements once, at connection
-        setup time to define or negotiate the timestamp structure and instace
-        elements (repeatedly) to identify the quality of timestamp instances
-        at runtime.</t>
-
-        <t><list style="numbers">
-            <t>&lt;Structure&gt;: static timestamp control field. The static
-            control field identifies information like timestamp structure,
-            type, size, or features, that characterize and are common to a set
-            of related timestamps. Typical use of such a control field is at
-            connection establishment time when protocols negotiate available
-            and preferred timestamp types and features to be used for the
-            lifetime of an association. For instance endpoints can specify the
-            type, structure and size of the timestamp representation within
-            protocol messages that will be exchanged as part of a following
-            protocol session. These can be either standard timestamp formats
-            like NTP 64 bit as specified by this memo or specific
-            vendor-defined timestamp formats.</t>
-
-            <t>&lt;Instance&gt;: runtime timestamp control field. Besides
-            static information, dynamic (runtime) timestamp information is
-            commonly available at the sender when sampling a specific
-            timestamp instance. Typical examples include the ID of a clock
-            that originated a specific timestamp, the estimated time
-            synchronization accuracy of the local reference clock when
-            sampling a specific timestamp, or the correction to apply due to
-            an ongoing leap smear for a leap second. Moreover, with today's
-            critical infrastructures depending increasingly on accurate time,
-            provable signatures may become an essential runtime parameter to
-            protect the integrity of timestamp and control field values. The
-            accurate and reliable operation of timestamp receivers can benefit
-            from this detailed runtime control field information that augments
-            any single timestamp.</t>
-          </list>Drawing analogies to programming languages, the static
-        timestamp control field maps best to concepts like "type",
-        "structure", or "template", whereas the runtime timestamp control
-        field corresponds to "variables", i.e., runtime-instantiations of
-        types. Main consequence is that static timestamp control fields may be
-        exchanged only once during an ongoing association, saving substantial
-        link capacity, whereas a runtime timestamp control field accompanies
-        any single message or timestamp instance. Still, some protocols may
-        prefer to augment any single timestamp instance with both, a static
-        and a runtime control field. Example use cases for the latter variant
-        include potential support for heterogeneity in terms of timestamps -
-        various clients can decide dynamically which timestamp format they
-        send as part of the protocol - or to include a maximum of timestamp
-        context for receivers in the case of sporadic messages.</t>
+          </list>Proposals for timestamp control fields will be defined in
+        separate documents and are out of scope of this memo.</t>
       </section>
     </section>
 
