@@ -5,7 +5,7 @@
 Network Working Group                                         T. Mizrahi
 Internet-Draft                                                   Marvell
 Intended status: Informational                                 J. Fabini
-Expires: December 16, 2018               Vienna University of Technology
+Expires: December 16, 2018                                       TU Wien
                                                                A. Morton
                                                                AT&T Labs
                                                            June 14, 2018
@@ -910,7 +910,7 @@ Authors' Addresses
 
 
    Joachim Fabini
-   Vienna University of Technology
+   TU Wien
    Gusshausstrasse 25/E389
    Vienna 1040
    Austria
