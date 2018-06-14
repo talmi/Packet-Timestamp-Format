@@ -5,10 +5,10 @@
 Network Working Group                                         T. Mizrahi
 Internet-Draft                                                   Marvell
 Intended status: Informational                                 J. Fabini
-Expires: November 14, 2018               Vienna University of Technology
+Expires: December 16, 2018               Vienna University of Technology
                                                                A. Morton
                                                                AT&T Labs
-                                                            May 13, 2018
+                                                           June 14, 2018
 
 
                Guidelines for Defining Packet Timestamps
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 14, 2018.
+   This Internet-Draft will expire on December 16, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Mizrahi, et al.         Expires November 14, 2018               [Page 1]
+Mizrahi, et al.         Expires December 16, 2018               [Page 1]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
    (https://trustee.ietf.org/license-info) in effect on the date of
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Mizrahi, et al.         Expires November 14, 2018               [Page 2]
+Mizrahi, et al.         Expires December 16, 2018               [Page 2]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
    timestamps, on the other hand, are represented by a compact binary
@@ -165,9 +165,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018               [Page 3]
+Mizrahi, et al.         Expires December 16, 2018               [Page 3]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
    Timestamp precision:   The variation over an ensemble of measurements
@@ -221,9 +221,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018               [Page 4]
+Mizrahi, et al.         Expires December 16, 2018               [Page 4]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
       + Epoch: The origin of the timescale used for the timestamp; the
@@ -277,9 +277,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018               [Page 5]
+Mizrahi, et al.         Expires December 16, 2018               [Page 5]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
    o  Common format for multiple protocols: if there are two or more
@@ -333,9 +333,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018               [Page 6]
+Mizrahi, et al.         Expires December 16, 2018               [Page 6]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
       + Units: seconds.
@@ -389,9 +389,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018               [Page 7]
+Mizrahi, et al.         Expires December 16, 2018               [Page 7]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
         0                   1                   2                   3
@@ -445,9 +445,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018               [Page 8]
+Mizrahi, et al.         Expires December 16, 2018               [Page 8]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
 4.3.  The PTP Truncated Timestamp Format
@@ -501,9 +501,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018               [Page 9]
+Mizrahi, et al.         Expires December 16, 2018               [Page 9]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
       This timestamp format is not affected by leap seconds.
@@ -557,9 +557,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018              [Page 10]
+Mizrahi, et al.         Expires December 16, 2018              [Page 10]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
    affected by leap seconds, the Synchronization Aspects section should
@@ -613,9 +613,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018              [Page 11]
+Mizrahi, et al.         Expires December 16, 2018              [Page 11]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
       The timestamp format used in this specification is the NTP
@@ -669,9 +669,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018              [Page 12]
+Mizrahi, et al.         Expires December 16, 2018              [Page 12]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
    This section defines high-level guidelines for defining packet
@@ -725,9 +725,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018              [Page 13]
+Mizrahi, et al.         Expires December 16, 2018              [Page 13]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
 7.2.  Control Field Categories
@@ -781,9 +781,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018              [Page 14]
+Mizrahi, et al.         Expires December 16, 2018              [Page 14]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
    and a runtime control field.  Example use cases for the latter
@@ -837,9 +837,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018              [Page 15]
+Mizrahi, et al.         Expires December 16, 2018              [Page 15]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
    mechanism can also compromise protocols that use timestamping.
@@ -893,9 +893,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018              [Page 16]
+Mizrahi, et al.         Expires December 16, 2018              [Page 16]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
    [RFC1323]  Jacobson, V., Braden, R., and D. Borman, "TCP Extensions
@@ -949,9 +949,9 @@ Internet-Draft              Packet Timestamps                   May 2018
 
 
 
-Mizrahi, et al.         Expires November 14, 2018              [Page 17]
+Mizrahi, et al.         Expires December 16, 2018              [Page 17]
 
-Internet-Draft              Packet Timestamps                   May 2018
+Internet-Draft              Packet Timestamps                  June 2018
 
 
    [RFC7456]  Mizrahi, T., Senevirathne, T., Salam, S., Kumar, D., and
@@ -1005,4 +1005,4 @@ Authors' Addresses
 
 
 
-Mizrahi, et al.         Expires November 14, 2018              [Page 18]
+Mizrahi, et al.         Expires December 16, 2018              [Page 18]
