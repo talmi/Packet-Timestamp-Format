@@ -2,13 +2,13 @@
 
 
 
-Network Working Group                                         T. Mizrahi
+NTP Working Group                                             T. Mizrahi
 Internet-Draft                                                   Marvell
 Intended status: Informational                                 J. Fabini
-Expires: December 22, 2018                                       TU Wien
+Expires: December 26, 2018                                       TU Wien
                                                                A. Morton
                                                                AT&T Labs
-                                                           June 20, 2018
+                                                           June 24, 2018
 
 
                Guidelines for Defining Packet Timestamps
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 22, 2018.
+   This Internet-Draft will expire on December 26, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Mizrahi, et al.         Expires December 22, 2018               [Page 1]
+Mizrahi, et al.         Expires December 26, 2018               [Page 1]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Mizrahi, et al.         Expires December 22, 2018               [Page 2]
+Mizrahi, et al.         Expires December 26, 2018               [Page 2]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -165,7 +165,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018               [Page 3]
+Mizrahi, et al.         Expires December 26, 2018               [Page 3]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -221,7 +221,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018               [Page 4]
+Mizrahi, et al.         Expires December 26, 2018               [Page 4]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -277,7 +277,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018               [Page 5]
+Mizrahi, et al.         Expires December 26, 2018               [Page 5]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -333,7 +333,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018               [Page 6]
+Mizrahi, et al.         Expires December 26, 2018               [Page 6]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -389,7 +389,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018               [Page 7]
+Mizrahi, et al.         Expires December 26, 2018               [Page 7]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -445,7 +445,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018               [Page 8]
+Mizrahi, et al.         Expires December 26, 2018               [Page 8]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -501,7 +501,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018               [Page 9]
+Mizrahi, et al.         Expires December 26, 2018               [Page 9]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -557,7 +557,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018              [Page 10]
+Mizrahi, et al.         Expires December 26, 2018              [Page 10]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -613,7 +613,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018              [Page 11]
+Mizrahi, et al.         Expires December 26, 2018              [Page 11]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -669,7 +669,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018              [Page 12]
+Mizrahi, et al.         Expires December 26, 2018              [Page 12]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -725,7 +725,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018              [Page 13]
+Mizrahi, et al.         Expires December 26, 2018              [Page 13]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -781,7 +781,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018              [Page 14]
+Mizrahi, et al.         Expires December 26, 2018              [Page 14]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -837,7 +837,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018              [Page 15]
+Mizrahi, et al.         Expires December 26, 2018              [Page 15]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -893,7 +893,7 @@ Internet-Draft              Packet Timestamps                  June 2018
 
 
 
-Mizrahi, et al.         Expires December 22, 2018              [Page 16]
+Mizrahi, et al.         Expires December 26, 2018              [Page 16]
 
 Internet-Draft              Packet Timestamps                  June 2018
 
@@ -949,4 +949,4 @@ Authors' Addresses
 
 
 
-Mizrahi, et al.         Expires December 22, 2018              [Page 17]
+Mizrahi, et al.         Expires December 26, 2018              [Page 17]
