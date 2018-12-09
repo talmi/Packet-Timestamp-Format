@@ -344,10 +344,12 @@
             </list></t>
 
           <t>Leap seconds: <list hangIndent="10" style="empty">
-              <t>This timestamp format is affected by leap seconds. The
-              timestamp represents the number of seconds elapsed since the
-              epoch minus the number of leap seconds. Thus, during the occurrence 
-			  of a leap second, the value of the timestamp is ambiguous.</t>
+              <t>This timestamp format is affected by leap seconds.  The 
+			  timestamp represents the number of seconds elapsed since the 
+			  epoch minus the number of leap seconds. Thus, during and possibly 
+			  after the occurrence of a leap second, the value of the timestamp 
+			  may temporarily be ambiguous, as further discussed in 
+			  <xref target="SynchSec"/>.</t>
             </list></t>
 
           <t>Resolution: <list hangIndent="10" style="empty">
@@ -417,10 +419,12 @@
             </list></t>
 
           <t>Leap seconds: <list hangIndent="10" style="empty">
-              <t>This timestamp format is affected by leap seconds. The
-              timestamp represents the number of seconds elapsed since the
-              epoch minus the number of leap seconds. Thus, during the occurrence 
-			  of a leap second, the value of the timestamp is ambiguous.</t>
+              <t>This timestamp format is affected by leap seconds.  The 
+			  timestamp represents the number of seconds elapsed since the 
+			  epoch minus the number of leap seconds. Thus, during and possibly 
+			  after the occurrence of a leap second, the value of the timestamp 
+			  may temporarily be ambiguous, as further discussed in 
+			  <xref target="SynchSec"/>.</t>
             </list></t>
 
           <t>Resolution: <list hangIndent="10" style="empty">
@@ -499,7 +503,7 @@
       </section>
     </section>
 
-    <section title="Synchronization Aspects">
+    <section anchor="SynchSec" title="Synchronization Aspects">
       <t>A specification that defines a new timestamp format or uses one of
       the recommended timestamp formats should include a section on
       Synchronization Aspects. Examples of such a section can be found in
@@ -516,13 +520,21 @@
       timestamp accuracy.</t>
 
       <t>Another aspect that should be discussed in this section is leap
-      second <xref target="RFC5905"/> considerations. The timestamp
-      specification template (<xref target="format"/>) specifies whether the
-      timestamp is affected by leap seconds. It is often the case that further
-      details about leap seconds will need to be defined in the
-      Synchronization Aspects section. Generally speaking, in a timekeeping
-      system that considers leap seconds, the system clock may be affected by
-      a leap second in one of three possible ways:</t>
+      second <xref target="RFC5905"/> considerations. 
+	  The timestamp specification template (<xref target="format"/>) specifies 
+	  whether the timestamp is affected by leap seconds. It is often the case 
+	  that further details about leap seconds will need to be defined in the 
+	  Synchronization Aspects section. Generally speaking, a leap second is a 
+	  one-second adjustment that is occasionally applied to UTC in order to 
+	  keep it aligned to the solar time. A leap second may be either positive 
+	  or negative, i.e., the clock may either be shifted one second forwards 
+	  or backwards. All leap seconds that have occurred up to the publication 
+	  of this document have been in the backwards direction, and although 
+	  forward leap seconds are theoretically possible, the text throughout 
+	  this document focuses on the common case, which is the backward leap 
+	  second.  In a timekeeping system that considers leap seconds, the 
+	  system clock may be affected by a leap second in one of three possible 
+	  ways:</t>
 
       <t><list style="symbols">
           <t>The clock is turned backwards one second at the end of the leap
@@ -530,8 +542,11 @@
 
           <t>The clock is frozen during the duration of the leap second.</t>
 
-          <t>The clock is slowed down during and slightly after the duration
-          of the leap second, until the new time value catches up.</t>
+          <t>The clock is slowed down during the leap second and adjacent time
+          intervals until the new time value catches up. The interval for this
+          process, commonly referred to as leap smear, can range from several
+          seconds to several hours before, during, and/or after the occurrence of
+          the leap second.</t>
         </list></t>
 
       <t>The way leap seconds are handled depends on the synchronization
@@ -571,6 +586,8 @@
 | TCP   [RFC1323]  |           |           |           |     +     |
 +------------------+-----------+-----------+-----------+-----------+
 | RTP   [RFC3550]  |     +     |           |           |     +     |
++------------------+-----------+-----------+-----------+-----------+
+| IPFIX [RFC7011]  |           |           |           |     +     |
 +------------------+-----------+-----------+-----------+-----------+
 | [I-D.ietf-ippm-  |     +     |     +     |           |           |
 | initial-registry]|           |           |           |           |
@@ -825,6 +842,8 @@
       <?rfc include='reference.RFC.5357'?>
 
       <?rfc include='reference.RFC.4656'?>
+
+      <?rfc include='reference.RFC.7011'?>
 
       <?rfc include='reference.RFC.7456'?>
 

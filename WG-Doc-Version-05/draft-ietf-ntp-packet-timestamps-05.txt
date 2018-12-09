@@ -5,10 +5,10 @@
 NTP Working Group                                             T. Mizrahi
 Internet-Draft                          Huawei Network.IO Innovation Lab
 Intended status: Informational                                 J. Fabini
-Expires: June 2, 2019                                            TU Wien
+Expires: June 11, 2019                                           TU Wien
                                                                A. Morton
                                                                AT&T Labs
-                                                       November 29, 2018
+                                                        December 8, 2018
 
 
                Guidelines for Defining Packet Timestamps
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on June 2, 2019.
+   This Internet-Draft will expire on June 11, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Mizrahi, et al.           Expires June 2, 2019                  [Page 1]
+Mizrahi, et al.           Expires June 11, 2019                 [Page 1]
 
-Internet-Draft              Packet Timestamps              November 2018
+Internet-Draft              Packet Timestamps              December 2018
 
 
    (https://trustee.ietf.org/license-info) in effect on the date of
@@ -83,16 +83,16 @@ Table of Contents
    5.  Synchronization Aspects . . . . . . . . . . . . . . . . . . .  10
    6.  Timestamp Use Cases . . . . . . . . . . . . . . . . . . . . .  11
      6.1.  Example 1 . . . . . . . . . . . . . . . . . . . . . . . .  12
-     6.2.  Example 2 . . . . . . . . . . . . . . . . . . . . . . . .  12
-   7.  Packet Timestamp Control Field  . . . . . . . . . . . . . . .  12
-     7.1.  High-level Control Field Requirements . . . . . . . . . .  13
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
-   10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  15
-   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  15
-     11.1.  Normative References . . . . . . . . . . . . . . . . . .  15
-     11.2.  Informative References . . . . . . . . . . . . . . . . .  15
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
+     6.2.  Example 2 . . . . . . . . . . . . . . . . . . . . . . . .  13
+   7.  Packet Timestamp Control Field  . . . . . . . . . . . . . . .  13
+     7.1.  High-level Control Field Requirements . . . . . . . . . .  14
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
+   10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  16
+   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  16
+     11.1.  Normative References . . . . . . . . . . . . . . . . . .  16
+     11.2.  Informative References . . . . . . . . . . . . . . . . .  16
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  18
 
 1.  Introduction
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Mizrahi, et al.           Expires June 2, 2019                  [Page 2]
+Mizrahi, et al.           Expires June 11, 2019                 [Page 2]
 
-Internet-Draft              Packet Timestamps              November 2018
+Internet-Draft              Packet Timestamps              December 2018
 
 
    field that has a fixed size, and are not intended to have a human-
@@ -165,9 +165,9 @@ Internet-Draft              Packet Timestamps              November 2018
 
 
 
-Mizrahi, et al.           Expires June 2, 2019                  [Page 3]
+Mizrahi, et al.           Expires June 11, 2019                 [Page 3]
 
-Internet-Draft              Packet Timestamps              November 2018
+Internet-Draft              Packet Timestamps              December 2018
 
 
    Timestamp resolution:  The minimal time unit used for representing
@@ -221,9 +221,9 @@ Internet-Draft              Packet Timestamps              November 2018
 
 
 
-Mizrahi, et al.           Expires June 2, 2019                  [Page 4]
+Mizrahi, et al.           Expires June 11, 2019                 [Page 4]
 
-Internet-Draft              Packet Timestamps              November 2018
+Internet-Draft              Packet Timestamps              December 2018
 
 
       UTC.  Another example is a relative timestamp, in which the epoch
@@ -277,9 +277,9 @@ Internet-Draft              Packet Timestamps              November 2018
 
 
 
-Mizrahi, et al.           Expires June 2, 2019                  [Page 5]
+Mizrahi, et al.           Expires June 11, 2019                 [Page 5]
 
-Internet-Draft              Packet Timestamps              November 2018
+Internet-Draft              Packet Timestamps              December 2018
 
 
       preferred if possible.  Specifically, if the network protocol that
@@ -333,9 +333,9 @@ Internet-Draft              Packet Timestamps              November 2018
 
 
 
-Mizrahi, et al.           Expires June 2, 2019                  [Page 6]
+Mizrahi, et al.           Expires June 11, 2019                 [Page 6]
 
-Internet-Draft              Packet Timestamps              November 2018
+Internet-Draft              Packet Timestamps              December 2018
 
 
       Fraction: specifies the fractional portion of the number of
@@ -361,8 +361,9 @@ Internet-Draft              Packet Timestamps              November 2018
 
       This timestamp format is affected by leap seconds.  The timestamp
       represents the number of seconds elapsed since the epoch minus the
-      number of leap seconds.  Thus, during the occurrence of a leap
-      second, the value of the timestamp is ambiguous.
+      number of leap seconds.  Thus, during and possibly after the
+      occurrence of a leap second, the value of the timestamp may
+      temporarily be ambiguous, as further discussed in Section 5.
 
    Resolution:
 
@@ -384,14 +385,17 @@ Internet-Draft              Packet Timestamps              November 2018
    constraints do not allow the use of the 64-bit format, or when the
    32-bit format satisfies the resolution and wraparound requirements.
 
+
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                 [Page 7]
+
+Internet-Draft              Packet Timestamps              December 2018
+
+
    The format is presented in this section according to the template
    defined in Section 3.
-
-
-
-Mizrahi, et al.           Expires June 2, 2019                  [Page 7]
-
-Internet-Draft              Packet Timestamps              November 2018
 
 
         0                   1                   2                   3
@@ -434,21 +438,23 @@ Internet-Draft              Packet Timestamps              November 2018
 
       This timestamp format is affected by leap seconds.  The timestamp
       represents the number of seconds elapsed since the epoch minus the
-      number of leap seconds.  Thus, during the occurrence of a leap
-      second, the value of the timestamp is ambiguous.
+      number of leap seconds.  Thus, during and possibly after the
+      occurrence of a leap second, the value of the timestamp may
+      temporarily be ambiguous, as further discussed in Section 5.
+
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                 [Page 8]
+
+Internet-Draft              Packet Timestamps              December 2018
+
 
    Resolution:
 
       The resolution is 2^(-16) seconds.
 
    Wraparound:
-
-
-
-Mizrahi, et al.           Expires June 2, 2019                  [Page 8]
-
-Internet-Draft              Packet Timestamps              November 2018
-
 
       This time format wraps around every 2^16 seconds, which is roughly
       18 hours.
@@ -491,20 +497,21 @@ Internet-Draft              Packet Timestamps              November 2018
 
       + Size: 32 bits.
 
+
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                 [Page 9]
+
+Internet-Draft              Packet Timestamps              December 2018
+
+
       + Units: nanoseconds.  The value of this field is in the range 0
       to (10^9)-1.
 
    Epoch:
 
       The PTP [IEEE1588] epoch is 1 January 1970 00:00:00 TAI.
-
-
-
-
-Mizrahi, et al.           Expires June 2, 2019                  [Page 9]
-
-Internet-Draft              Packet Timestamps              November 2018
-
 
    Leap seconds:
 
@@ -541,7 +548,23 @@ Internet-Draft              Packet Timestamps              November 2018
    template (Section 3) specifies whether the timestamp is affected by
    leap seconds.  It is often the case that further details about leap
    seconds will need to be defined in the Synchronization Aspects
-   section.  Generally speaking, in a timekeeping system that considers
+   section.  Generally speaking, a leap second is a one-second
+   adjustment that is occasionally applied to UTC in order to keep it
+   aligned to the solar time.  A leap second may be either positive or
+   negative, i.e., the clock may either be shifted one second forwards
+   or backwards.  All leap seconds that have occurred up to the
+   publication of this document have been in the backwards direction,
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                [Page 10]
+
+Internet-Draft              Packet Timestamps              December 2018
+
+
+   and although forward leap seconds are theoretically possible, the
+   text throughout this document focuses on the common case, which is
+   the backward leap second.  In a timekeeping system that considers
    leap seconds, the system clock may be affected by a leap second in
    one of three possible ways:
 
@@ -550,17 +573,11 @@ Internet-Draft              Packet Timestamps              November 2018
 
    o  The clock is frozen during the duration of the leap second.
 
-   o  The clock is slowed down during and slightly after the duration of
-      the leap second, until the new time value catches up.
-
-
-
-
-
-Mizrahi, et al.           Expires June 2, 2019                 [Page 10]
-
-Internet-Draft              Packet Timestamps              November 2018
-
+   o  The clock is slowed down during the leap second and adjacent time
+      intervals until the new time value catches up.  The interval for
+      this process, commonly referred to as leap smear, can range from
+      several seconds to several hours before, during, and/or after the
+      occurrence of the leap second.
 
    The way leap seconds are handled depends on the synchronization
    protocol, and is thus not specified in this document.  However, if a
@@ -575,6 +592,30 @@ Internet-Draft              Packet Timestamps              November 2018
    synchronization, and others.  The following table presents a (non-
    exhaustive) list of protocols that use packet timestamps, and the
    timestamp formats used in each of these protocols.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                [Page 11]
+
+Internet-Draft              Packet Timestamps              December 2018
 
 
    +------------------+-----------------------------------+-----------+
@@ -597,6 +638,8 @@ Internet-Draft              Packet Timestamps              November 2018
    +------------------+-----------+-----------+-----------+-----------+
    | RTP   [RFC3550]  |     +     |           |           |     +     |
    +------------------+-----------+-----------+-----------+-----------+
+   | IPFIX [RFC7011]  |           |           |           |     +     |
+   +------------------+-----------+-----------+-----------+-----------+
    | [I-D.ietf-ippm-  |     +     |     +     |           |           |
    | initial-registry]|           |           |           |           |
    +------------------+-----------+-----------+-----------+-----------+
@@ -611,13 +654,6 @@ Internet-Draft              Packet Timestamps              November 2018
    formats.  The examples include the text that specifies the
    information related to the timestamp format.
 
-
-
-Mizrahi, et al.           Expires June 2, 2019                 [Page 11]
-
-Internet-Draft              Packet Timestamps              November 2018
-
-
 6.1.  Example 1
 
    Timestamp:
@@ -630,6 +666,14 @@ Internet-Draft              Packet Timestamps              November 2018
 
       It is assumed that nodes that run this protocol are synchronized
       to UTC using a synchronization mechanism that is outside the scope
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                [Page 12]
+
+Internet-Draft              Packet Timestamps              December 2018
+
+
       of this document.  In typical deployments this protocol will run
       on a machine that uses NTP [RFC5905] for synchronization.  Thus,
       the timestamp may be derived from the NTP-synchronized clock,
@@ -666,14 +710,6 @@ Internet-Draft              Packet Timestamps              November 2018
    model.  An optional control field allows some of the control
    information to be attached to the timestamp.
 
-
-
-
-Mizrahi, et al.           Expires June 2, 2019                 [Page 12]
-
-Internet-Draft              Packet Timestamps              November 2018
-
-
    An example of a packet timestamp control field is the Error Estimate
    field, defined by Section 4.1.2 in [RFC4656], which is used in OWAMP
    [RFC4656] and TWAMP [RFC5357].
@@ -682,6 +718,17 @@ Internet-Draft              Packet Timestamps              November 2018
    timestamp control fields in network protocols that can benefit from
    such timestamp-related control information.  The word 'requirements'
    is used in its informal context in this section.
+
+
+
+
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                [Page 13]
+
+Internet-Draft              Packet Timestamps              December 2018
+
 
 7.1.  High-level Control Field Requirements
 
@@ -722,20 +769,22 @@ Internet-Draft              Packet Timestamps              November 2018
        may be meaningful to support separation of these two concepts:
        while the former (static) information is typically valid
        throughout a protocol session and may be conveyed only once, at
-
-
-
-Mizrahi, et al.           Expires June 2, 2019                 [Page 13]
-
-Internet-Draft              Packet Timestamps              November 2018
-
-
        session establishment time, the latter (runtime) information
        augments any timestamp instance and may cause substantial
        overhead for high-traffic protocols.
 
    Proposals for timestamp control fields will be defined in separate
    documents and are out of scope of this memo.
+
+
+
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                [Page 14]
+
+Internet-Draft              Packet Timestamps              December 2018
+
 
 8.  IANA Considerations
 
@@ -778,16 +827,20 @@ Internet-Draft              Packet Timestamps              November 2018
 
    In many cases timestamping relies on an underlying synchronization
    mechanism.  Thus, any attack that compromises the synchronization
-
-
-
-Mizrahi, et al.           Expires June 2, 2019                 [Page 14]
-
-Internet-Draft              Packet Timestamps              November 2018
-
-
    mechanism can also compromise protocols that use timestamping.
    Attacks on time protocols are discussed in detail in [RFC7384].
+
+
+
+
+
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                [Page 15]
+
+Internet-Draft              Packet Timestamps              December 2018
+
 
 10.  Acknowledgments
 
@@ -834,17 +887,16 @@ Internet-Draft              Packet Timestamps              November 2018
               Synchronization Protocol for Networked Measurement and
               Control Systems", 2002.
 
-
-
-
-Mizrahi, et al.           Expires June 2, 2019                 [Page 15]
-
-Internet-Draft              Packet Timestamps              November 2018
-
-
    [ITU-T-Y.1731]
               ITU-T, "OAM functions and mechanisms for Ethernet based
               Networks", 2013.
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                [Page 16]
+
+Internet-Draft              Packet Timestamps              December 2018
+
 
    [RFC1323]  Jacobson, V., Braden, R., and D. Borman, "TCP Extensions
               for High Performance", RFC 1323, DOI 10.17487/RFC1323, May
@@ -887,16 +939,24 @@ Internet-Draft              Packet Timestamps              November 2018
               RFC 6991, DOI 10.17487/RFC6991, July 2013,
               <https://www.rfc-editor.org/info/rfc6991>.
 
+   [RFC7011]  Claise, B., Ed., Trammell, B., Ed., and P. Aitken,
+              "Specification of the IP Flow Information Export (IPFIX)
+              Protocol for the Exchange of Flow Information", STD 77,
+              RFC 7011, DOI 10.17487/RFC7011, September 2013,
+              <https://www.rfc-editor.org/info/rfc7011>.
+
+
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                [Page 17]
+
+Internet-Draft              Packet Timestamps              December 2018
+
+
    [RFC7384]  Mizrahi, T., "Security Requirements of Time Protocols in
               Packet Switched Networks", RFC 7384, DOI 10.17487/RFC7384,
               October 2014, <https://www.rfc-editor.org/info/rfc7384>.
-
-
-
-Mizrahi, et al.           Expires June 2, 2019                 [Page 16]
-
-Internet-Draft              Packet Timestamps              November 2018
-
 
    [RFC7456]  Mizrahi, T., Senevirathne, T., Salam, S., Kumar, D., and
               D. Eastlake 3rd, "Loss and Delay Measurement in
@@ -934,6 +994,22 @@ Authors' Addresses
    URI:   http://www.tc.tuwien.ac.at/about-us/staff/joachim-fabini/
 
 
+
+
+
+
+
+
+
+
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                [Page 18]
+
+Internet-Draft              Packet Timestamps              December 2018
+
+
    Al Morton
    AT&T Labs
    200 Laurel Avenue South
@@ -949,4 +1025,40 @@ Authors' Addresses
 
 
 
-Mizrahi, et al.           Expires June 2, 2019                 [Page 17]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Mizrahi, et al.           Expires June 11, 2019                [Page 19]
