@@ -629,7 +629,7 @@
         <t>Timestamp: <list hangIndent="10" style="empty">
             <t>The timestamp format used in this specification is the PTP
             <xref target="IEEE1588"/> Truncated format, as specified in
-            Section 4.2.3 of <xref
+            Section 4.3 of <xref
             target="I-D.ietf-ntp-packet-timestamps"/>.</t>
           </list></t>
 
@@ -758,10 +758,10 @@
 
     <section anchor="Acknowledgments" title="Acknowledgments">
       <t>The authors thank Yaakov Stein, Greg Mirsky, Warner Losh, Rodney
-      Cummings, Miroslav Lichvar, and other members of the NTP working group for 
-	  many helpful comments. The authors gratefully acknowledge Harlan Stenn and 
-	  the people from the Network Time Foundation for sharing their thoughts and
-      ideas.</t>
+      Cummings, Miroslav Lichvar, Denis Reilly, and other members of the NTP 
+	  working group for many helpful comments. The authors gratefully acknowledge 
+	  Harlan Stenn and the people from the Network Time Foundation for sharing 
+	  their thoughts and ideas.</t>
     </section>
   </middle>
 

@@ -5,10 +5,10 @@
 NTP Working Group                                             T. Mizrahi
 Internet-Draft                          Huawei Network.IO Innovation Lab
 Intended status: Informational                                 J. Fabini
-Expires: June 11, 2019                                           TU Wien
+Expires: June 12, 2019                                           TU Wien
                                                                A. Morton
                                                                AT&T Labs
-                                                        December 8, 2018
+                                                        December 9, 2018
 
 
                Guidelines for Defining Packet Timestamps
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on June 11, 2019.
+   This Internet-Draft will expire on June 12, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                 [Page 1]
+Mizrahi, et al.           Expires June 12, 2019                 [Page 1]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                 [Page 2]
+Mizrahi, et al.           Expires June 12, 2019                 [Page 2]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -165,7 +165,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                 [Page 3]
+Mizrahi, et al.           Expires June 12, 2019                 [Page 3]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -221,7 +221,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                 [Page 4]
+Mizrahi, et al.           Expires June 12, 2019                 [Page 4]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -277,7 +277,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                 [Page 5]
+Mizrahi, et al.           Expires June 12, 2019                 [Page 5]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -333,7 +333,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                 [Page 6]
+Mizrahi, et al.           Expires June 12, 2019                 [Page 6]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -389,7 +389,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                 [Page 7]
+Mizrahi, et al.           Expires June 12, 2019                 [Page 7]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -445,7 +445,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                 [Page 8]
+Mizrahi, et al.           Expires June 12, 2019                 [Page 8]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -501,7 +501,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                 [Page 9]
+Mizrahi, et al.           Expires June 12, 2019                 [Page 9]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -557,7 +557,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                [Page 10]
+Mizrahi, et al.           Expires June 12, 2019                [Page 10]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -613,7 +613,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                [Page 11]
+Mizrahi, et al.           Expires June 12, 2019                [Page 11]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -669,7 +669,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                [Page 12]
+Mizrahi, et al.           Expires June 12, 2019                [Page 12]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -688,7 +688,7 @@ Internet-Draft              Packet Timestamps              December 2018
    Timestamp:
 
       The timestamp format used in this specification is the PTP
-      [IEEE1588] Truncated format, as specified in Section 4.2.3 of
+      [IEEE1588] Truncated format, as specified in Section 4.3 of
       [I-D.ietf-ntp-packet-timestamps].
 
    Synchronization aspects:
@@ -725,7 +725,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                [Page 13]
+Mizrahi, et al.           Expires June 12, 2019                [Page 13]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -781,7 +781,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                [Page 14]
+Mizrahi, et al.           Expires June 12, 2019                [Page 14]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -837,7 +837,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                [Page 15]
+Mizrahi, et al.           Expires June 12, 2019                [Page 15]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -845,10 +845,10 @@ Internet-Draft              Packet Timestamps              December 2018
 10.  Acknowledgments
 
    The authors thank Yaakov Stein, Greg Mirsky, Warner Losh, Rodney
-   Cummings, Miroslav Lichvar, and other members of the NTP working
-   group for many helpful comments.  The authors gratefully acknowledge
-   Harlan Stenn and the people from the Network Time Foundation for
-   sharing their thoughts and ideas.
+   Cummings, Miroslav Lichvar, Denis Reilly, and other members of the
+   NTP working group for many helpful comments.  The authors gratefully
+   acknowledge Harlan Stenn and the people from the Network Time
+   Foundation for sharing their thoughts and ideas.
 
 11.  References
 
@@ -893,7 +893,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                [Page 16]
+Mizrahi, et al.           Expires June 12, 2019                [Page 16]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -949,7 +949,7 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                [Page 17]
+Mizrahi, et al.           Expires June 12, 2019                [Page 17]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -1005,7 +1005,7 @@ Authors' Addresses
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                [Page 18]
+Mizrahi, et al.           Expires June 12, 2019                [Page 18]
 
 Internet-Draft              Packet Timestamps              December 2018
 
@@ -1061,4 +1061,4 @@ Internet-Draft              Packet Timestamps              December 2018
 
 
 
-Mizrahi, et al.           Expires June 11, 2019                [Page 19]
+Mizrahi, et al.           Expires June 12, 2019                [Page 19]
