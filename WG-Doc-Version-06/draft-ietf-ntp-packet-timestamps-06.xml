@@ -249,7 +249,7 @@
 		
       <t>Synchronization aspects: <list hangIndent="10" style="empty">
           <t>The specification of a network protocol that makes use of a 
-		  packet timestamp should include the synchronization aspects of
+		  packet timestamp is expected to include the synchronization aspects of
 		  using the timestamp. While the synchronization aspects are not
 		  strictly part of the timestamp format specification, these aspects
 		  provide the necessary context for using the timestamp within 
@@ -531,12 +531,13 @@
     <section anchor="SynchSec" title="Synchronization Aspects">
       <t>A specification that defines a new timestamp format or uses one of
       the recommended timestamp formats should include a section on
-      Synchronization Aspects. Note that the current document does not specify
-	  the synchronization aspects of the recommended timestamp formats, but it
-	  is expected that specifications of network protocols that make use of 
+      Synchronization Aspects. Note that the recommended timestamp formats
+	  defined in this document (<xref target="Recommended"/>) do not include 
+	  the synchronization aspects of these timestamp formats, but it is 
+	  expected that specifications of network protocols that make use of 
 	  these formats should include the synchronization aspects.
 	  Examples of a Synchronization Aspects section can be found in
-      <xref target="UseCaseSec"/>).</t>
+      <xref target="UseCaseSec"/>.</t>
 
       <t>The Synchronization Aspects section should specify all the
       assumptions and requirements related to synchronization. For example,
