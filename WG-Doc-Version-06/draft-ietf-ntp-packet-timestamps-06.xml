@@ -146,7 +146,7 @@
       It is expected that a new network protocol that requires a packet
       timestamp will, in most cases, use one of these recommended timestamp
       formats. In some cases a network protocol may use more than one of the
-	  recommended timestamp formats. However, f none of the recommended formats 
+	  recommended timestamp formats. However, if none of the recommended formats 
 	  fits the protocol requirements, the new protocol specification should 
 	  specify the format of the packet timestamp according to the guidelines in 
 	  this document.</t>
