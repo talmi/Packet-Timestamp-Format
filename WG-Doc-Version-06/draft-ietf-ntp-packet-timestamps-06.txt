@@ -12,7 +12,7 @@ Expires: August 15, 2019                                         TU Wien
 
 
                Guidelines for Defining Packet Timestamps
-                  draft-ietf-ntp-packet-timestamps-05
+                  draft-ietf-ntp-packet-timestamps-06
 
 Abstract
 
