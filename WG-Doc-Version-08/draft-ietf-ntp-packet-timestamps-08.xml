@@ -85,7 +85,6 @@
 
         <email>acmorton@att.com</email>
 
-        <uri>http://home.comcast.net/~acmacm/</uri>
       </address>
     </author>
 
@@ -821,7 +820,7 @@
     </section>
 
     <section anchor="Acknowledgments" title="Acknowledgments">
-      <t>The authors thank Yaakov Stein, Greg Mirsky, Warner Losh, Rodney
+      <t>The authors thank Russ Housley, Yaakov Stein, Greg Mirsky, Warner Losh, Rodney
       Cummings, Miroslav Lichvar, Denis Reilly, Daniel Franke, Watson Ladd, and 
 	  other members of the NTP working group for many helpful comments. The 
 	  authors gratefully acknowledge Harlan Stenn and the people from the 

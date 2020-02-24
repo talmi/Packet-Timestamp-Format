@@ -956,11 +956,12 @@ Internet-Draft              Packet Timestamps              February 2020
 
 10.  Acknowledgments
 
-   The authors thank Yaakov Stein, Greg Mirsky, Warner Losh, Rodney
-   Cummings, Miroslav Lichvar, Denis Reilly, Daniel Franke, Watson Ladd,
-   and other members of the NTP working group for many helpful comments.
-   The authors gratefully acknowledge Harlan Stenn and the people from
-   the Network Time Foundation for sharing their thoughts and ideas.
+   The authors thank Russ Housley, Yaakov Stein, Greg Mirsky, Warner
+   Losh, Rodney Cummings, Miroslav Lichvar, Denis Reilly, Daniel Franke,
+   Watson Ladd, and other members of the NTP working group for many
+   helpful comments.  The authors gratefully acknowledge Harlan Stenn
+   and the people from the Network Time Foundation for sharing their
+   thoughts and ideas.
 
 11.  References
 
@@ -998,7 +999,6 @@ Internet-Draft              Packet Timestamps              February 2020
               IEEE, "IEEE 1588 Standard for a Precision Clock
               Synchronization Protocol for Networked Measurement and
               Control Systems Version 2", 2008.
-
 
 
 
@@ -1143,7 +1143,7 @@ Internet-Draft              Packet Timestamps              February 2020
    Phone: +1 732 420 1571
    Fax:   +1 732 368 1192
    Email: acmorton@att.com
-   URI:   http://home.comcast.net/~acmacm/
+
 
 
 
