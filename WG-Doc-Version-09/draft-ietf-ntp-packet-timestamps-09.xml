@@ -22,7 +22,7 @@
   <front>
     <title abbrev="Packet Timestamps">Guidelines for Defining Packet
     Timestamps</title>
-	
+
     <author fullname="Tal Mizrahi" initials="T." surname="Mizrahi">
       <organization abbrev="">Huawei Smart Platforms iLab</organization>
 
@@ -40,7 +40,7 @@
         <email>tal.mizrahi.phd@gmail.com</email>
       </address>
     </author>
-	
+
     <author fullname="Joachim Fabini" initials="J." surname="Fabini">
       <organization>TU Wien</organization>
 
@@ -84,7 +84,6 @@
         <facsimile>+1 732 368 1192</facsimile>
 
         <email>acmorton@att.com</email>
-
       </address>
     </author>
 
@@ -97,90 +96,85 @@
     <keyword>Timestamps</keyword>
 
     <abstract>
-      <t>Various network protocols make use of binary-encoded timestamps
-	  that are incorporated in the protocol packet format, referred to as
-	  packet timestamps for short. This document specifies guidelines for 
-	  defining packet timestamp formats in networking protocols at various 
-	  layers. It also presents three recommended timestamp formats. The target 
-	  audience of this document includes network protocol designers. It is expected 
-	  that a new network protocol that requires a packet timestamp will, in 
-	  most cases, use one of the recommended timestamp formats. If none of the 
-	  recommended formats fits the protocol requirements, the new protocol 
-	  specification should specify the format of the packet timestamp according 
-	  to the guidelines in this document.</t>
+      <t>Various network protocols make use of binary-encoded timestamps that
+      are incorporated in the protocol packet format, referred to as packet
+      timestamps for short. This document specifies guidelines for defining
+      packet timestamp formats in networking protocols at various layers. It
+      also presents three recommended timestamp formats. The target audience
+      of this document includes network protocol designers. It is expected
+      that a new network protocol that requires a packet timestamp will, in
+      most cases, use one of the recommended timestamp formats. If none of the
+      recommended formats fits the protocol requirements, the new protocol
+      specification should specify the format of the packet timestamp
+      according to the guidelines in this document.</t>
     </abstract>
   </front>
 
   <middle>
     <section title="Introduction">
-    <section title="Background">
-      <t>Timestamps are widely used in network protocols for various purposes:
-      timestamps are used for logging or reporting the time of an event,
-      delay measurement and clock synchronization protocols both make use of
-      timestamped messages, and in security protocols a timestamp is often
-      used as part of a value that is unlikely to repeat (nonce).</t>
+      <section title="Background">
+        <t>Timestamps are widely used in network protocols for various
+        purposes: timestamps are used for logging or reporting the time of an
+        event, delay measurement and clock synchronization protocols both make
+        use of timestamped messages, and in security protocols a timestamp is
+        often used as part of a value that is unlikely to repeat (nonce).</t>
 
-      <t>Timestamps are represented in the RFC series in one of two forms:
-      text-based timestamps, and packet timestamps. Text-based timestamps
-      <xref target="RFC3339"/> are represented as user-friendly strings, and
-      are widely used in the RFC series, for example in information objects
-      and data models, e.g., <xref target="RFC5646"/>, <xref
-      target="RFC6991"/>, and <xref target="RFC7493"/>. Packet timestamps, on
-      the other hand, are represented by a compact binary field that has a
-      fixed size, and are not intended to have a human-friendly format. Packet
-      timestamps are also very common in the RFC series, and are used for
-      example for measuring delay and for synchronizing clocks, e.g., <xref
-      target="RFC5905"/>, <xref target="RFC4656"/>, and <xref
-      target="RFC7323"/>.</t>
-	</section>
+        <t>Timestamps are represented in the RFC series in one of two forms:
+        text-based timestamps, and packet timestamps. Text-based timestamps
+        <xref target="RFC3339"/> are represented as user-friendly strings, and
+        are widely used in the RFC series, for example in information objects
+        and data models, e.g., <xref target="RFC5646"/>, <xref
+        target="RFC6991"/>, and <xref target="RFC7493"/>. Packet timestamps,
+        on the other hand, are represented by a compact binary field that has
+        a fixed size, and are not intended to have a human-friendly format.
+        Packet timestamps are also very common in the RFC series, and are used
+        for example for measuring delay and for synchronizing clocks, e.g.,
+        <xref target="RFC5905"/>, <xref target="RFC4656"/>, and <xref
+        target="RFC7323"/>.</t>
+      </section>
 
+      <section title="Scope of this Document">
+        <t>This document presents guidelines for defining a packet timestamp
+        format in network protocols. Three recommended timestamp formats are
+        presented. It is expected that a new network protocol that requires a
+        packet timestamp will, in most cases, use one of these recommended
+        timestamp formats. In some cases a network protocol may use more than
+        one of the recommended timestamp formats. However, if none of the
+        recommended formats fits the protocol requirements, the new protocol
+        specification should specify the format of the packet timestamp
+        according to the guidelines in this document.</t>
 
-    <section title="Scope of this Document">
-      <t>This document presents guidelines for defining a packet timestamp format
-      in network protocols. Three recommended timestamp formats are presented.
-      It is expected that a new network protocol that requires a packet
-      timestamp will, in most cases, use one of these recommended timestamp
-      formats. In some cases a network protocol may use more than one of the
-	  recommended timestamp formats. However, if none of the recommended formats 
-	  fits the protocol requirements, the new protocol specification should 
-	  specify the format of the packet timestamp according to the guidelines in 
-	  this document.</t>
+        <t>The rationale behind defining a relatively small set of recommended
+        formats is that it enables significant reuse; network protocols can
+        typically reuse the timestamp format of the Network Time Protocol
+        (NTP) or the Precision Time Protocol (PTP), allowing a straightforward
+        integration with an NTP or a PTP-based timer. Moreover, since accurate
+        timestamping mechanisms are often implemented in hardware, a new
+        network protocol that reuses an existing timestamp format can be
+        quickly deployed using existing hardware timestamping
+        capabilities.</t>
+      </section>
 
-	  <t>
-	  The rationale behind defining a relatively small set of recommended formats 
-	  is that it enables significant reuse; network protocols can typically reuse 
-	  the timestamp format of the Network Time Protocol (NTP) or the Precision 
-	  Time Protocol (PTP), allowing a straightforward integration with an NTP or a 
-	  PTP-based timer. Moreover, since accurate timestamping mechanisms are 
-	  often implemented in hardware, a new network protocol that reuses an existing 
-	  timestamp format can be quickly deployed using existing hardware 
-	  timestamping capabilities.
-	  </t>
-	</section>
-
-    <section title="How to Use This Document">
-      <t>This document is intended as a reference for network protocol 
-	  designers. When defining a network protocol that uses a packet timestamp, the 
-	  recommended timestamp formats should be considered first (<xref
-      target="Recommended"/>). If one of these formats is used, it should be
-	  referenced along the lines of the examples in  
-	  <xref target="Ex1Sec"/> and <xref target="Ex2Sec"/>. If none of the 
-	  recommended formats fits the required functionality, then a new timestamp
-	  format should be defined using the template of <xref target="format"/>.
-	  </t>
-  
-	</section>
-	
-	</section>
+      <section title="How to Use This Document">
+        <t>This document is intended as a reference for network protocol
+        designers. When defining a network protocol that uses a packet
+        timestamp, the recommended timestamp formats should be considered
+        first (<xref target="Recommended"/>). If one of these formats is used,
+        it should be referenced along the lines of the examples in <xref
+        target="Ex1Sec"/> and <xref target="Ex2Sec"/>. If none of the
+        recommended formats fits the required functionality, then a new
+        timestamp format should be defined using the template of <xref
+        target="format"/>.</t>
+      </section>
+    </section>
 
     <section title="Terminology">
       <section title="Requirements Language">
-		<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
-        NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
-        "MAY", and "OPTIONAL" in this document are to be interpreted as
-        described in BCP 14 <xref target="RFC2119"/>
-		<xref target="RFC8174"/> when, and only when, they
-        appear in all capitals, as shown here.</t>
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+        "OPTIONAL" in this document are to be interpreted as described in BCP
+        14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only
+        when, they appear in all capitals, as shown here.</t>
       </section>
 
       <section title="Abbreviations">
@@ -197,14 +191,13 @@
 
       <section title="Terms used in this Document">
         <t><list hangIndent="23" style="hanging">
+            <t hangText="Timestamp:">A value that represents a point in time,
+            corresponding to an event that occurred or is scheduled to
+            occur.</t>
 
-		    <t hangText="Timestamp:">A value that represents a point in time, 
-			corresponding to an event that occurred or is scheduled to occur.
-			</t>
-
-		    <t hangText="Timestamp error:">The difference between the timestamp 
-			value and the value of a reference clock at the time of the event 
-			that the timestamp was intended to indicate.</t>
+            <t hangText="Timestamp error:">The difference between the
+            timestamp value and the value of a reference clock at the time of
+            the event that the timestamp was intended to indicate.</t>
 
             <t hangText="Timestamp format:">The specification of a timestamp,
             which is represented by a set of attributes that unambiguously
@@ -223,13 +216,13 @@
     </section>
 
     <section anchor="format" title="Packet Timestamp Specification Template">
-      <t>This document recommends to use the timestamp formats defined in <xref
-      target="Recommended"/>. In cases where these timestamp formats do not
-      satisfy the protocol requirements, the timestamp specification should
-      clearly state the reasons for defining a new format. Moreover, it is
-      recommended to derive the new timestamp format from an existing
-      timestamp format, either a timestamp format from this document, or any other
-      previously defined timestamp format.</t>
+      <t>This document recommends to use the timestamp formats defined in
+      <xref target="Recommended"/>. In cases where these timestamp formats do
+      not satisfy the protocol requirements, the timestamp specification
+      should clearly state the reasons for defining a new format. Moreover, it
+      is recommended to derive the new timestamp format from an existing
+      timestamp format, either a timestamp format from this document, or any
+      other previously defined timestamp format.</t>
 
       <t>The timestamp specification must unambiguously define the syntax and
       the semantics of the timestamp. The current section defines the minimum
@@ -244,16 +237,16 @@
       <t>Timestamp syntax: <list hangIndent="10" style="empty">
           <t>- Size: The number of bits (or octets) used to represent the
           packet timestamp field. If the timestamp is comprised of more than
-          one field, the size of each field is specified. Network order (big 
-		  endian) is assumed by default; if this is not the case then this 
-		  section explicitly specifies the endianity.</t>
+          one field, the size of each field is specified. Network order (big
+          endian) is assumed by default; if this is not the case then this
+          section explicitly specifies the endianity.</t>
         </list></t>
 
       <t>Timestamp semantics: <list hangIndent="10" style="empty">
           <t>- Units: The units used to represent the timestamp. If the
           timestamp is comprised of more than one field, the units of each
-          field are specified. If a field is limited to a specific range of 
-		  values, this section specifies the permitted range of values.</t>
+          field are specified. If a field is limited to a specific range of
+          values, this section specifies the permitted range of values.</t>
 
           <t>- Resolution: The timestamp resolution; the resolution is equal
           to the timestamp field unit. If the timestamp consists of two or
@@ -266,40 +259,40 @@
           <t>- Epoch: The origin of the timescale used for the timestamp; the
           moment in time used as a reference for the timestamp value. For
           example, the epoch may be based on a standard time scale, such as
-          UTC. Another example is a relative timestamp, in which the epoch 
-		  could be the time at which the device using the timestamp was powered 
-		  up, and is not affected by leap seconds (see the next attribute).</t>
+          UTC. Another example is a relative timestamp, in which the epoch
+          could be the time at which the device using the timestamp was
+          powered up, and is not affected by leap seconds (see the next
+          attribute).</t>
 
           <t>- Leap seconds: This subsection specifies whether the timestamp
           is affected by leap seconds. If the timestamp is affected by leap
           seconds, then it represents the time elapsed since the epoch minus
           the number of leap seconds that have occurred since the epoch.</t>
         </list></t>
-		
+
       <t>Synchronization aspects: <list hangIndent="10" style="empty">
-          <t>The specification of a network protocol that makes use of a 
-		  packet timestamp is expected to include the synchronization aspects of
-		  using the timestamp. While the synchronization aspects are not
-		  strictly part of the timestamp format specification, these aspects
-		  provide the necessary context for using the timestamp within 
-		  the scope of the protocol. In some cases timestamps are used without 
-		  synchronization, e.g., a timestamp that indicates the number of 
-		  seconds since power up. In such cases the Synchronization Aspects 
-		  section will specify that the timestamp does not correspond to a 
-		  synchronized time reference, and may discuss how this affects the 
-		  usage of the timestamp. Further details about synchronization
-		  aspects are discussed in <xref target="SynchSec"/>.</t>
+          <t>The specification of a network protocol that makes use of a
+          packet timestamp is expected to include the synchronization aspects
+          of using the timestamp. While the synchronization aspects are not
+          strictly part of the timestamp format specification, these aspects
+          provide the necessary context for using the timestamp within the
+          scope of the protocol. In some cases timestamps are used without
+          synchronization, e.g., a timestamp that indicates the number of
+          seconds since power up. In such cases the Synchronization Aspects
+          section will specify that the timestamp does not correspond to a
+          synchronized time reference, and may discuss how this affects the
+          usage of the timestamp. Further details about synchronization
+          aspects are discussed in <xref target="SynchSec"/>.</t>
         </list></t>
-		
     </section>
 
     <section anchor="Recommended" title="Recommended Timestamp Formats">
-      <t>This document defines a set of recommended timestamp formats. 
-	  Clearly, different network protocols may have different requirements
-      and constraints, and consequently may use different timestamp formats.
-      The choice of the specific timestamp format for a given protocol may
-      depend on a various factors. A few examples of factors that may affect
-      the choice of the timestamp format:</t>
+      <t>This document defines a set of recommended timestamp formats.
+      Clearly, different network protocols may have different requirements and
+      constraints, and consequently may use different timestamp formats. The
+      choice of the specific timestamp format for a given protocol may depend
+      on a various factors. A few examples of factors that may affect the
+      choice of the timestamp format:</t>
 
       <t><list style="symbols">
           <t>Timestamp size: while some network protocols use a large
@@ -384,22 +377,21 @@
           <t>Epoch: <list hangIndent="10" style="empty">
               <t>The epoch is 1 January 1900 at 00:00 UTC.</t>
 
-              <t>Note: As pointed out in [RFC5905], strictly speaking, UTC 
-			  did not exist prior to 1 January 1972, but it is convenient to 
-			  assume it has existed for all eternity. The current epoch 
-			  implies that the timestamp specifies the number of seconds 
-			  since 1 January 1972 at 00:00 UTC plus 2272060800 (which is 
-			  the number of seconds between 1 January 1900 and 1 January 1972).
-			  </t>
+              <t>Note: As pointed out in [RFC5905], strictly speaking, UTC did
+              not exist prior to 1 January 1972, but it is convenient to
+              assume it has existed for all eternity. The current epoch
+              implies that the timestamp specifies the number of seconds since
+              1 January 1972 at 00:00 UTC plus 2272060800 (which is the number
+              of seconds between 1 January 1900 and 1 January 1972).</t>
             </list></t>
 
           <t>Leap seconds: <list hangIndent="10" style="empty">
-              <t>This timestamp format is affected by leap seconds.  The 
-			  timestamp represents the number of seconds elapsed since the 
-			  epoch minus the number of leap seconds. Thus, during and possibly 
-			  before and/or after the occurrence of a leap second, the value of 
-			  the timestamp may temporarily be ambiguous, as further discussed 
-			  in <xref target="SynchSec"/>.</t>
+              <t>This timestamp format is affected by leap seconds. The
+              timestamp represents the number of seconds elapsed since the
+              epoch minus the number of leap seconds. Thus, during and
+              possibly before and/or after the occurrence of a leap second,
+              the value of the timestamp may temporarily be ambiguous, as
+              further discussed in <xref target="SynchSec"/>.</t>
             </list></t>
 
           <t>Resolution: <list hangIndent="10" style="empty">
@@ -416,12 +408,12 @@
         <section title="NTP 32-bit Timestamp Format">
           <t>The Network Time Protocol (NTP) 32-bit timestamp format is
           defined in <xref target="RFC5905"/>. This timestamp format is used
-          in <xref target="I-D.ietf-ippm-initial-registry"/> and
-		  <xref target="I-D.ietf-sfc-nsh-dc-allocation"/>. This timestamp
-          format should be preferred in network protocols that are typically
-          deployed in concert with NTP. The 32-bit format can be used either
-          when space constraints do not allow the use of the 64-bit format, or
-          when the 32-bit format satisfies the resolution and wraparound
+          in <xref target="I-D.ietf-ippm-initial-registry"/> and <xref
+          target="I-D.ietf-sfc-nsh-dc-allocation"/>. This timestamp format
+          should be preferred in network protocols that are typically deployed
+          in concert with NTP. The 32-bit format can be used either when space
+          constraints do not allow the use of the 64-bit format, or when the
+          32-bit format satisfies the resolution and wraparound
           requirements.</t>
 
           <t>The format is presented in this section according to the template
@@ -459,22 +451,21 @@
           <t>Epoch: <list hangIndent="10" style="empty">
               <t>The epoch is 1 January 1900 at 00:00 UTC.</t>
 
-              <t>Note: As pointed out in [RFC5905], strictly speaking, UTC 
-			  did not exist prior to 1 January 1972, but it is convenient to 
-			  assume it has existed for all eternity. The current epoch 
-			  implies that the timestamp specifies the number of seconds 
-			  since 1 January 1972 at 00:00 UTC plus 2272060800 (which is 
-			  the number of seconds between 1 January 1900 and 1 January 1972).
-			  </t>
+              <t>Note: As pointed out in [RFC5905], strictly speaking, UTC did
+              not exist prior to 1 January 1972, but it is convenient to
+              assume it has existed for all eternity. The current epoch
+              implies that the timestamp specifies the number of seconds since
+              1 January 1972 at 00:00 UTC plus 2272060800 (which is the number
+              of seconds between 1 January 1900 and 1 January 1972).</t>
             </list></t>
 
           <t>Leap seconds: <list hangIndent="10" style="empty">
-              <t>This timestamp format is affected by leap seconds.  The 
-			  timestamp represents the number of seconds elapsed since the 
-			  epoch minus the number of leap seconds. Thus, during and possibly 
-			  after the occurrence of a leap second, the value of the timestamp 
-			  may temporarily be ambiguous, as further discussed in 
-			  <xref target="SynchSec"/>.</t>
+              <t>This timestamp format is affected by leap seconds. The
+              timestamp represents the number of seconds elapsed since the
+              epoch minus the number of leap seconds. Thus, during and
+              possibly after the occurrence of a leap second, the value of the
+              timestamp may temporarily be ambiguous, as further discussed in
+              <xref target="SynchSec"/>.</t>
             </list></t>
 
           <t>Resolution: <list hangIndent="10" style="empty">
@@ -557,12 +548,12 @@
       <t>A specification that defines a new timestamp format or uses one of
       the recommended timestamp formats should include a section on
       Synchronization Aspects. Note that the recommended timestamp formats
-	  defined in this document (<xref target="Recommended"/>) do not include 
-	  the synchronization aspects of these timestamp formats, but it is 
-	  expected that specifications of network protocols that make use of 
-	  these formats should include the synchronization aspects.
-	  Examples of a Synchronization Aspects section can be found in
-      <xref target="UseCaseSec"/>.</t>
+      defined in this document (<xref target="Recommended"/>) do not include
+      the synchronization aspects of these timestamp formats, but it is
+      expected that specifications of network protocols that make use of these
+      formats should include the synchronization aspects. Examples of a
+      Synchronization Aspects section can be found in <xref
+      target="UseCaseSec"/>.</t>
 
       <t>The Synchronization Aspects section should specify all the
       assumptions and requirements related to synchronization. For example,
@@ -575,21 +566,21 @@
       timestamp accuracy and precision.</t>
 
       <t>Another aspect that should be discussed in this section is leap
-      second <xref target="RFC5905"/> considerations. 
-	  The timestamp specification template (<xref target="format"/>) specifies 
-	  whether the timestamp is affected by leap seconds. It is often the case 
-	  that further details about leap seconds will need to be defined in the 
-	  Synchronization Aspects section. Generally speaking, a leap second is a 
-	  one-second adjustment that is occasionally applied to UTC in order to 
-	  keep it aligned to the solar time. A leap second may be either positive 
-	  or negative, i.e., the clock may either be shifted one second forwards 
-	  or backwards. All leap seconds that have occurred up to the publication 
-	  of this document have been in the backwards direction, and although 
-	  forward leap seconds are theoretically possible, the text throughout 
-	  this document focuses on the common case, which is the backward leap 
-	  second.  In a timekeeping system that considers leap seconds, the 
-	  system clock may be affected by a leap second in one of three possible 
-	  ways:</t>
+      second <xref target="RFC5905"/> considerations. The timestamp
+      specification template (<xref target="format"/>) specifies whether the
+      timestamp is affected by leap seconds. It is often the case that further
+      details about leap seconds will need to be defined in the
+      Synchronization Aspects section. Generally speaking, a leap second is a
+      one-second adjustment that is occasionally applied to UTC in order to
+      keep it aligned to the solar time. A leap second may be either positive
+      or negative, i.e., the clock may either be shifted one second forwards
+      or backwards. All leap seconds that have occurred up to the publication
+      of this document have been in the backwards direction, and although
+      forward leap seconds are theoretically possible, the text throughout
+      this document focuses on the common case, which is the backward leap
+      second. In a timekeeping system that considers leap seconds, the system
+      clock may be affected by a leap second in one of three possible
+      ways:</t>
 
       <t><list style="symbols">
           <t>The clock is turned backwards one second at the end of the leap
@@ -600,8 +591,8 @@
           <t>The clock is slowed down during the leap second and adjacent time
           intervals until the new time value catches up. The interval for this
           process, commonly referred to as leap smear, can range from several
-          seconds to several hours before, during, and/or after the occurrence of
-          the leap second.</t>
+          seconds to several hours before, during, and/or after the occurrence
+          of the leap second.</t>
         </list></t>
 
       <t>The way leap seconds are handled depends on the synchronization
@@ -713,14 +704,14 @@
       <t>An example of a packet timestamp control field is the Error Estimate
       field, defined by Section 4.1.2 in <xref target="RFC4656"/>, which is
       used in OWAMP <xref target="RFC4656"/> and TWAMP <xref
-      target="RFC5357"/>. The Root Dispersion and Root Delay fields in the NTP 
-	  header <xref target="RFC5905"/> are two examples of fields that provide
-	  information about the timestamp precision. Another example of an 
-	  auxiliary field is the Correction Field in the PTP header 
-	  <xref target="IEEE1588"/>; its value is used as a correction to the 
-	  timestamp, and may be assigned by the sender of the PTP message and 
-	  updated by transit nodes (Transparent Clocks) in order to account for the 
-	  delay along the path.</t>
+      target="RFC5357"/>. The Root Dispersion and Root Delay fields in the NTP
+      header <xref target="RFC5905"/> are two examples of fields that provide
+      information about the timestamp precision. Another example of an
+      auxiliary field is the Correction Field in the PTP header <xref
+      target="IEEE1588"/>; its value is used as a correction to the timestamp,
+      and may be assigned by the sender of the PTP message and updated by
+      transit nodes (Transparent Clocks) in order to account for the delay
+      along the path.</t>
 
       <t>This section defines high-level guidelines for defining packet
       timestamp control fields in network protocols that can benefit from such
@@ -792,14 +783,14 @@
       information about the network performance, and about the level of
       synchronization between nodes.</t>
 
-      <t>In some cases timestamps could be spoofed or modified by on-path 
-	  attackers, thus attacking the application that uses the timestamps. For 
-	  example, if timestamps are used in a delay measurement protocol, an 
-	  attacker can modify en route timestamps in a way that manipulates the 
-	  measurement results. Integrity protection mechanisms, such as Message
-      Authentication Codes (MAC), can mitigate such attacks. The
-      specification of an integrity protection mechanism is outside the scope
-      of this document, as typically integrity protection will be defined on a
+      <t>In some cases timestamps could be spoofed or modified by on-path
+      attackers, thus attacking the application that uses the timestamps. For
+      example, if timestamps are used in a delay measurement protocol, an
+      attacker can modify en route timestamps in a way that manipulates the
+      measurement results. Integrity protection mechanisms, such as Message
+      Authentication Codes (MAC), can mitigate such attacks. The specification
+      of an integrity protection mechanism is outside the scope of this
+      document, as typically integrity protection will be defined on a
       per-network-protocol basis, and not specifically for the timestamp
       field.</t>
 
@@ -821,11 +812,12 @@
     </section>
 
     <section anchor="Acknowledgments" title="Acknowledgments">
-      <t>The authors thank Russ Housley, Yaakov Stein, Greg Mirsky, Warner Losh, Rodney
-      Cummings, Miroslav Lichvar, Denis Reilly, Daniel Franke, Watson Ladd, and 
-	  other members of the NTP working group for many helpful comments. The 
-	  authors gratefully acknowledge Harlan Stenn and the people from the 
-	  Network Time Foundation for sharing their thoughts and ideas.</t>
+      <t>The authors thank Russ Housley, Yaakov Stein, Greg Mirsky, Warner
+      Losh, Rodney Cummings, Miroslav Lichvar, Denis Reilly, Daniel Franke,
+      Eric Vyncke, Ben Kaduk, Ian Swett, Francesca Palombini, Watson Ladd, and
+      other members of the NTP working group for many helpful comments. The
+      authors gratefully acknowledge Harlan Stenn and the people from the
+      Network Time Foundation for sharing their thoughts and ideas.</t>
     </section>
   </middle>
 
@@ -836,7 +828,7 @@
       <?rfc include='reference.RFC.2119'?>
 
       <?rfc include='reference.RFC.8174'?>
-	  
+
       <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?-->
 
       <!--&RFC2119;-->
@@ -922,7 +914,7 @@
       <?rfc include='reference.I-D.ietf-ippm-initial-registry'?>
 
       <?rfc include='reference.I-D.ietf-sfc-nsh-dc-allocation'?>
-	  
+
       <?rfc include='reference.I-D.ietf-ntp-packet-timestamps'?>
     </references>
 
